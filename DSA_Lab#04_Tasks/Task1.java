@@ -261,6 +261,71 @@ public static Task1 delete(int elem,Task1 start) {
 		t=t.next;
 		t.next=new Task1(10);
 		
+		System.out.println("Number 8 is found in Node 1??\n"+search(copy,8));		
+
+		System.out.println("Size of Node 1 is :   "+length(copy));
+
+		System.out.println("Sum of All the elements of Node 1 is :   "+sumAll(copy));
+		
+		System.out.println("After Deleting Last Node from Node 1:  ");
+		Task1 lastNodeDeleted=deleteLastNode(copy);
+		for(Task1 i=lastNodeDeleted;i!=null;i=i.next) {
+			System.out.print(i.data+"\t");
+		}
+		System.out.println();
+		
+		System.out.println("After Copying Node 1:  ");
+		Task1 copiedNode=copy(copy);		
+		for(Task1 i=copiedNode;i!=null;i=i.next) {
+			System.out.print(i.data+"\t");
+		}
+		System.out.println();
+		
+		System.out.println("After Taking SubList FROM Node 1:  ");
+		Task1 subList=subList(copy,2,6);		
+		for(Task1 i=subList;i!=null;i=i.next) {
+			System.out.print(i.data+"\t");
+		}
+		System.out.println();
+
+		Task1 t2=new Task1(3);
+		Task1 copy1=t2;
+		t2.next=new Task1(4);
+		t2=t2.next;
+		t2.next=new Task1(6);
+		t2=t2.next;
+		t2.next=new Task1(7);
+		t2=t2.next;
+		t2.next=new Task1(9);
+		Task1 append=append(copy,copy1);
+		System.out.println("Appended List is:   ");
+		for(Task1 i=append;i!=null;i=i.next) {
+			System.out.print(i.data+"\t");
+		}
+		System.out.println();
+		
+//		Task1 t2=new Task1(3);
+//		Task1 copy1=t2;
+//		t2.next=new Task1(4);
+//		t2=t2.next;
+//		t2.next=new Task1(6);
+//		t2=t2.next;
+//		t2.next=new Task1(7);
+//		t2=t2.next;
+//		t2.next=new Task1(9);
+		
+		System.out.println("Merged List is:   ");
+		Task1 merged=merge(copy,copy1);
+		for(Task1 i=merged;i!=null;i=i.next) {
+			System.out.print(i.data+"\t");
+		}
+		System.out.println();
+		
+//		Task1 appendAtLast=appendAtLast(copy,30);
+//		for(Task1 i=appendAtLast;i!=null;i=i.next) {
+//			System.out.println(i.data);
+//		}
+		
 //		Task1 insertAtFirstAndLast=insertAtFirstAndLast(copy,0,13);
 //		for(Task1 i=insertAtFirstAndLast;i!=null;i=i.next) {
 //			System.out.println(i.data);
@@ -278,14 +343,6 @@ public static Task1 delete(int elem,Task1 start) {
 //			System.out.println(i.data);
 //		}
 		
-//		int res=search(copy,8);
-//		System.out.println(res);
-		
-//		int res=length(copy);
-//		System.out.println(res);
-		
-//		int res=sumAll(copy);
-//		System.out.println(res);
 		
 //Task1 deleted=delete(3,copy);
 //		
@@ -293,61 +350,10 @@ public static Task1 delete(int elem,Task1 start) {
 //			System.out.println(i.data);
 //		}
 		
-//		Task1 lastNodeDeleted=deleteLastNode(copy);
-//		
-//		for(Task1 i=lastNodeDeleted;i!=null;i=i.next) {
-//			System.out.println(i.data);
-//		}
-
-//		Task1 copiedNode=copy(copy);
-//		
-//		for(Task1 i=copiedNode;i!=null;i=i.next) {
-//			System.out.println(i.data);
-		
-//		Task1 subList=subList(copy,2,6);
-//		
-//		for(Task1 i=subList;i!=null;i=i.next) {
-//			System.out.println(i.data);
-//		}
-		
-//		Task1 t2=new Task1(3);
-//		Task1 copy1=t2;
-//		t2.next=new Task1(4);
-//		t2=t2.next;
-//		t2.next=new Task1(6);
-//		t2=t2.next;
-//		t2.next=new Task1(7);
-//		t2=t2.next;
-//		t2.next=new Task1(9);
-//		Task1 append=append(copy,copy1);
-//		for(Task1 i=append;i!=null;i=i.next) {
-//			System.out.println(i.data);
-//		}
-		
-//		Task1 appendAtLast=appendAtLast(copy,30);
-//		for(Task1 i=appendAtLast;i!=null;i=i.next) {
-//			System.out.println(i.data);
-//		}
 		
 //		Task1 printFromSpecified=printFromSpecified(copy,1);
 //		for(Task1 i=printFromSpecified;i!=null;i=i.next) {
 //			System.out.println(i.data);
-//		}
-		
-		Task1 t2=new Task1(3);
-		Task1 copy1=t2;
-		t2.next=new Task1(4);
-		t2=t2.next;
-		t2.next=new Task1(6);
-		t2=t2.next;
-		t2.next=new Task1(7);
-		t2=t2.next;
-		t2.next=new Task1(9);
-		
-		Task1 merged=merge(copy,copy1);
-		for(Task1 i=merged;i!=null;i=i.next) {
-			System.out.println(i.data);
-		}
-		
+//		}		
 	}
 }
