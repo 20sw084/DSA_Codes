@@ -1,4 +1,4 @@
-/* 
+/*  
 * Prerequisites of Binary Search:
 * 1. The array should be in sorted form.
 * Benefits of Binary Search:
