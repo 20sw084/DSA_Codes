@@ -1,3 +1,7 @@
+/*
+Task 3: Explore java.util.LinkedList class; Create a linked list of type String using this class and apply any 5 of its methods.
+	*/
+
 import java.util.LinkedList;
 public class Task3 {
     public static void main(String[] args) {
