@@ -1,83 +1,118 @@
-
 public class ArrayStack implements Stack {
 	private int size;
 	private Object[] a;
 
+	public ArrayStack() {
+		size=0;
+	}
+	
 	public ArrayStack(int size) {
-		a=new Object[size];
+		a=new Object[size+1];
 	}
 
-	@Override
-	public void push(Object obj) {
-		// TODO Auto-generated method stub
-		a[size++]=obj;
-	}
-
-	@Override
-	public Object pop() {
-		// TODO Auto-generated method stub
-		if(size==0) {
-			throw new IllegalArgumentException("Stack is Empty.");
-		}
-		Object obj=a[--size];
-		a[size]=null;
-		return obj;
-	}
-
-	@Override
-	public Object peek() {
-		// TODO Auto-generated method stub
-		if(size==0)
-			throw new IllegalArgumentException("Stack is Empty");
-		return a[size-1];
-	}
-
+	
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
 		return size;
 	}
-	
-//	public ArrayStack resize(ArrayStack as) {
-//		int size=as.size;
-//		Object[] copy=new Object[as.size];
-//		for(int i=0;i<size;i++) {
-//			copy[i]=a[i];
-//		}
-//		a=new Object[2*(size)];
-//		for(int i=0;i<size;i++) {
-//			a[i]=copy[i];
-//		}
-//		return as;
-//	}
-	
-	public void resize(ArrayStack as) {
-		int size=a.length;
-		Object[] copy=new Object[size];
-		for(int i=0;i<size;i++) {
-			copy[i]=a[i];
+
+
+	@Override
+	public void push(Object obj) {
+		if(size==(a.length)) {
+			resize();
 		}
-		as=new ArrayStack(2*(size));
-		for(int i=0;i<size;i++) {
-			a[i]=copy[i];
-		}
+		a[size++]=obj;
 	}
 
-	public static void main(String[] args) {
+
+	@Override
+	public Object pop() {
 		// TODO Auto-generated method stub
-		ArrayStack as=new ArrayStack(11);
+		if(size==0) {
+			throw new IllegalArgumentException("Stack is Empty");
+		}
+		
+		return a[--size];
+	}
+
+
+	@Override
+	public Object peek() {
+		// TODO Auto-generated method stub
+		return a[--size];
+	}
+
+	public void resize() {
+		int len=a.length;
+		Object[] copy=new Object[len+1];
+		for(int i=0;i<a.length;i++) {
+			copy[i]=a[i];
+		}
+		a=copy;
+	}
+	
+	public List toLinkedList() {
+		List list=new List(a[0]);
+		List listCopy=list;
+		for(int i=1;i<a.length;i++) {
+			listCopy.next=new List(a[i]);
+			listCopy=listCopy.next;
+		}
+		return list;
+	}
+	
+	public LinkedListStack1 toLinkedStack() {
+		LinkedListStack1 lts=new LinkedListStack1(a[0]);
+		LinkedListStack1 ltsCopy=lts;
+		for(int i=1;i<a.length;i++) {
+			lts.next=new LinkedListStack1(a[i]);	
+			lts=lts.next;
+		}
+		return ltsCopy;
+	}
+	
+	public String toString() {
+		String str="Element 1:\t"+a[0];
+		for(int i=1;i<a.length;i++) {
+			str+="\nElement "+(i+1)+":\t"+a[i];
+		}
+		return str;
+	}
+	
+	public void printStack() {
+		for(int i=0;i<a.length;i++) 
+			System.out.println(a[i]);
+	}
+	
+	
+	public static void main(String[] args) {
+		ArrayStack as=new ArrayStack(5);
+//		System.out.println(as.isEmpty());
 		as.push("KIWI");
- 		as.push("PineApple");		
+ 		as.push("PineApple");
 		as.push("Banana");
  		as.pop();
-// 		System.out.println(as.peek());
 		as.push("Orange");
  		as.push("Apple");
 		as.push("Guava");
 		as.push("Strawberry");
-//		System.out.println(as.size());
-		as.resize(as);
-		System.out.println(as.peek());
-		System.out.println(as.size());		
+//		System.out.println("Size of Array is: "+as.size());
+//		System.out.println(as.peek());
+		
+//		List list=as.toLinkedList();
+//		
+//		for(List i=list;i!=null;i=i.next) {
+//			System.out.println(i.data);
+//		}
+		
+//		LinkedListStack1 lts=as.toLinkedStack();
+//		
+//		for(LinkedListStack1 i=lts;i!=null;i=i.next) {
+//			System.out.println(i.data);
+//		}
+		System.out.println(as.toString());	
+		
 	}
 }
