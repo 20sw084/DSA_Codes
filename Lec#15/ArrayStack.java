@@ -108,36 +108,35 @@ public class ArrayStack implements Stack {
 		return a[size-2];
 	}
 	
-	public Object removeBottomElement() {
-		if(size==0) {
+	public void removeBottomElement() 
+	{
+		if(size==0) 
+		{
 			throw new IllegalArgumentException("Stack is Empty");
 		}
 		int len=a.length;
 		Object[] copy=new Object[len-1];
 		size--;
-		for(int i=0;i<(a.length-1);i++) {
-			copy[i]=a[i];
+		for(int i=0;i<(a.length-1);i++) 
+		{
+			copy[i]=a[i+1];
 		}
 		a=copy;
-		return a[--size];
 	}
 	
-	public Object removeSecondElement() {
-		if(size==0) {
+	public void removeSecondElement() 
+	{
+		if(size==0) 
+		{
 			throw new IllegalArgumentException("Stack is Empty");
 		}
-		int len=a.length;
-		Object[] copy=new Object[len];
 		size--;
-		for(int i=0;i<a.length;i++) {
-			if(i==i-2) {
-				
-			}
-			else
-			copy[i]=a[i];
-		}
-		a=copy;
-		return a[--size];
+		for(int i=0;i<(a.length-1);i++) 
+		{   
+			if(i>0)
+			a[i]=a[i+1];
+		} 
+		this.a[size] = null;
 	}
 	
 	public static void main(String[] args) {
@@ -146,7 +145,7 @@ public class ArrayStack implements Stack {
 		as.push("KIWI");
  		as.push("PineApple");
 		as.push("Banana");
- 		as.pop();
+// 		as.pop();
 		as.push("Orange");
  		as.push("Apple");
 		as.push("Guava");
@@ -154,11 +153,12 @@ public class ArrayStack implements Stack {
 //		System.out.println("Size of Array is: "+as.size());
 //		System.out.println(as.peek());
 		
-//		List list=as.toLinkedList();
-//		
-//		for(List i=list;i!=null;i=i.next) {
-//			System.out.println(i.data);
-//		}
+		List list=as.toLinkedList();
+		
+		for(List i=list;i!=null;i=i.next) {
+			System.out.println(i.data );
+		}
+		
 		
 //		LinkedListStack1 lts=as.toLinkedStack();
 //		
@@ -167,9 +167,9 @@ public class ArrayStack implements Stack {
 //		}
 //		System.out.println(as.equals("KIW"));	
 //		System.out.println(as.bottomElement());	
-//		System.out.println(as.removeBottomElement());	
+//		as.removeBottomElement();	
 //		System.out.println(as.secondElement());
-		System.out.println(as.removeSecondElement());
+        as.removeSecondElement();
 		System.out.println(as.toString());	
 		
 	}
