@@ -153,24 +153,20 @@ public class ArrayStack implements Stack {
 //		System.out.println("Size of Array is: "+as.size());
 //		System.out.println(as.peek());
 		
-		List list=as.toLinkedList();
+//		List list=as.toLinkedList();
+			
 		
-		for(List i=list;i!=null;i=i.next) {
-			System.out.println(i.data );
+		LinkedListStack1 lts=as.toLinkedStack();
+		
+		for(LinkedListStack1 i=lts;i!=null;i=i.next) {
+			System.out.println(i.data);
 		}
-		
-		
-//		LinkedListStack1 lts=as.toLinkedStack();
-//		
-//		for(LinkedListStack1 i=lts;i!=null;i=i.next) {
-//			System.out.println(i.data);
-//		}
 //		System.out.println(as.equals("KIW"));	
 //		System.out.println(as.bottomElement());	
 //		as.removeBottomElement();	
 //		System.out.println(as.secondElement());
-        as.removeSecondElement();
-		System.out.println(as.toString());	
+//        as.removeSecondElement();
+//		System.out.println(as.toString());	
 		
 	}
 }
