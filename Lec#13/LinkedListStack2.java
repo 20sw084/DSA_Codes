@@ -1,4 +1,3 @@
-
 public class LinkedListStack2 implements Stack{
 		public class Node{
 			Node next;
@@ -63,10 +62,45 @@ public class LinkedListStack2 implements Stack{
 		
 		public String toString() {
 			String str="";
-			for(LinkedListStack2 i=this;i.top!=null;i.top=i.top.next) {
+			LinkedListStack2 i=this;
+			for( i=this;i.top!=null;i.top=i.top.next) {
 				str+=i.top.data+".  ";
 			}
 			return str;
+		}
+		
+		public boolean equals(Object obj) {
+			boolean found=false;
+			for(LinkedListStack2 i=this;i.top!=null;i.top=i.top.next) {
+				System.out.print(899);
+				if(i.top.data==obj) {
+					found=true;
+					break;
+				}
+			}
+			return found;
+		}
+		
+		public Object bottomElement() {
+			return this.top.data;
+		}
+		
+		public Object secondElement() {
+			return this.top.next.data;
+		}
+		
+		public void removeSecondElement() {
+			if(size==0) {
+				throw new IllegalArgumentException("Stack is Empty");
+			}
+			this.top.next=this.top;
+		}
+		
+		public void removeBottomElement() {
+			if(size==0) {
+				throw new IllegalArgumentException("Stack is Empty");
+			}
+			this.top=this.top.next;
 		}
 		
 		public ArrayStack toArrayStack() {
@@ -82,19 +116,18 @@ public class LinkedListStack2 implements Stack{
 				i++;
 				--sizeCopy;
 			}
-			
+			// For Direct toArray in reverse form
 //			for(int k=0;k<ob.length;k++)
 //			{
 //			as.a[k]=ob[k];
 //			}
-			
+			//First reverse it to make direct toArray
 			int j=0;
 			for(int k=(ob.length-1);k>=0;k--)
 			{
 			as.a[j]=ob[k];
 			j++;
-			}
-			
+			}			
 			as.size=sizeCopy1;
 			return as;
 		}
@@ -109,13 +142,19 @@ public class LinkedListStack2 implements Stack{
 			lls.push("Guava");
 			lls.push("Strawberry");
 			lls.pop();
-//			System.out.println(lls.peek());
-//			System.out.println(lls.toString());
-			ArrayStack toArr=lls.toArrayStack();
-			int j=0;
-			for(ArrayStack i=toArr;i.size!=0;i.size--) {				
-				System.out.println(i.a[j]);j++;
-			}
+			System.out.println(lls.peek());
+			System.out.println(lls.toString());
+//			ArrayStack toArr=lls.toArrayStack();
+//			int j=0;
+//			for(ArrayStack i=toArr;i.size!=0;i.size--) {				
+//				System.out.println(i.a[j]);j++;
+//			}
+//			System.out.println(lls.equals("Apple"));
+//			lls.print();
+//			lls.removeBottomElement();
+//			lls.print();
+//			System.out.println(lls.secondElement());
+//			lls.removeSecondElement();
 //			lls.print();
 		}
 }
