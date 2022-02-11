@@ -91,8 +91,29 @@ public class LinkedListStack2 implements Stack{
 //					System.out.println(d);
 				}
 			}
+			this.top=reverse(this);
 			return this;
 		}
+		
+
+		public void removeBottomElement() {
+			if(size==0) {
+				throw new IllegalArgumentException("Stack is Empty");
+			}
+			size=0;
+			LinkedListStack2 temp=new LinkedListStack2();
+			for(Node i=this.top;i!=null;i=i.next) {
+				if(i.next!=null) {
+					temp.push(i.data);
+					size++;
+				}
+				else {
+					
+				}
+			}
+			this.top=reverse(temp);
+		}
+		
 		public Node reverse(LinkedListStack2 lls) {
 			LinkedListStack2 llsCopy=new LinkedListStack2();
 			for(Node i=lls.top;i!=null;i=i.next) {
@@ -112,12 +133,6 @@ public class LinkedListStack2 implements Stack{
 			this.top.next=this.top;
 		}
 		
-		public void removeBottomElement() {
-			if(size==0) {
-				throw new IllegalArgumentException("Stack is Empty");
-			}
-			this.top=this.top.next;
-		}
 		
 		public ArrayStack toArrayStack() {
 			ArrayStack as=new ArrayStack();
@@ -158,19 +173,20 @@ public class LinkedListStack2 implements Stack{
 			lls.push("Guava");
 			lls.push("Strawberry");
 			lls.pop();
-			System.out.println(lls.toString());
+//			System.out.println(lls.toString());
 			lls.top=lls.reverse(lls);
-			System.out.println(lls.peek());
+//			System.out.println(lls.peek());
 			System.out.println(lls.bottomElement());
-			ArrayStack toArr=lls.toArrayStack();
-			int j=0;
-			for(ArrayStack i=toArr;i.size!=0;i.size--) {				
-				System.out.println(i.a[j]);j++;
-			}
-			System.out.println(lls.equals("Apple"));
-//			lls.print();
+			lls.removeBottomElement();
+//			ArrayStack toArr=lls.toArrayStack();
+//			int j=0;
+//			for(ArrayStack i=toArr;i.size!=0;i.size--) {				
+//				System.out.println(i.a[j]);j++;
+//			}
+//			System.out.println(lls.equals("Apple"));
+////			lls.print();
 //			lls.removeBottomElement();
-//			lls.print();
+			lls.print();
 //			System.out.println(lls.secondElement());
 //			lls.removeSecondElement();
 //			lls.print();
