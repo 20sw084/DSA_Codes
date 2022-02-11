@@ -83,6 +83,48 @@ public class LinkedListStack2 implements Stack{
 			return found;
 		}
 		
+		public void removeSecondLastElement() {
+			if(this.top == null)  throw new NoSuchElementException();
+//			Node i=null;
+//			Node iCopy=i;
+//			size--;
+//			for (i=this.top;i.next!=null;i=i.next) {
+//				if(i.next.next==null) {
+//					i=i.next;
+//					break;
+////					System.out.println(d);
+//				}
+//			}
+//			this.top=iCopy;
+////			this.top=reverse(this);
+			size=0;
+			LinkedListStack2 temp=new LinkedListStack2();
+			for(Node i=this.top;i.next!=null;i=i.next) {
+				if(i.next.next!=null) {
+					temp.push(i.data);
+					size++;
+				}
+				else if(i.next.next==null) {
+					temp.push(i.next.data);
+					size++;
+					break;
+				}
+			}
+			this.top=reverse(temp);
+		}
+		
+		public Object secondLastElement() {
+			if(this.top == null)  throw new NoSuchElementException();
+			for (Node i=this.top;i.next!=null;i=i.next) {
+				if(i.next.next==null) {
+					return i.data;
+//					System.out.println(d);
+				}
+			}
+//			this.top=reverse(this);
+			return this;
+		}
+		
 		public Object bottomElement() {
 			if(this.top == null)  throw new NoSuchElementException();
 			for (Node i=this.top;i!=null;i=i.next) {
@@ -177,7 +219,9 @@ public class LinkedListStack2 implements Stack{
 			lls.top=lls.reverse(lls);
 //			System.out.println(lls.peek());
 			System.out.println(lls.bottomElement());
-			lls.removeBottomElement();
+			System.out.println(lls.secondLastElement());
+//			lls.removeBottomElement();
+			lls.removeSecondLastElement();
 //			ArrayStack toArr=lls.toArrayStack();
 //			int j=0;
 //			for(ArrayStack i=toArr;i.size!=0;i.size--) {				
