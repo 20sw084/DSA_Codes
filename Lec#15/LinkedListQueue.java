@@ -40,8 +40,8 @@ public class LinkedListQueue implements Queue{
 		System.out.println(llq.first());
 		System.out.println(llq.remove());
 		System.out.println(llq.size());
-		LinkedListQueue l=llq.reverse();
-		System.out.println(l.toString());
+		llq.reverse();
+		System.out.println(llq.toString());
 //		LinkedListQueue merged=llq.merge(llq,lq);
 //		System.out.println(merged.size());
 //		for(Node i=l.head.next;i!=l.head;i=i.next) {
@@ -73,14 +73,24 @@ public class LinkedListQueue implements Queue{
 		return head.next.data;
 	}
 	
-	public LinkedListQueue reverse() {
+//	public LinkedListQueue reverse() {
+//		LinkedListQueue llq=new LinkedListQueue();
+//		for(Node i=this.head.prev;i!=this.head;i=i.prev) {
+////			llq.head.next=llq.head.next.next = 
+////					new Node(i.data,llq.head.next,llq.head.prev);
+//			llq.add(i.data);
+//		}
+//		return llq;
+//	}
+	
+	public void reverse() {
 		LinkedListQueue llq=new LinkedListQueue();
 		for(Node i=this.head.prev;i!=this.head;i=i.prev) {
-			llq.head.next.data=new Node(i.data);
-//			System.out.println(84);
+//			llq.head.next=llq.head.next.next = 
+//					new Node(i.data,llq.head.next,llq.head.prev);
+			llq.add(i.data);
 		}
-//		this.head=llq.head;
-		return llq;
+		this.head=llq.head;
 	}
 	
 	// To be Defined
@@ -154,4 +164,3 @@ public class LinkedListQueue implements Queue{
 }
 
 
-//https://www.youtube.com/watch?v=Bf-P7TGD6QU
