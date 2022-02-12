@@ -22,7 +22,6 @@ public class LinkedListQueue implements Queue{
 		}
 	}
 	
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		LinkedListQueue llq=new LinkedListQueue();
@@ -31,10 +30,24 @@ public class LinkedListQueue implements Queue{
 		llq.add("Three");
 		llq.add("Four");
 		llq.add("Five");
-		System.out.println(llq.size());
+//		LinkedListQueue lq=new LinkedListQueue();
+//		lq.add("One");
+//		lq.add("Two");
+//		lq.add("Three");
+//		lq.add("Four");
+//		lq.add("Five");
+		System.out.println(llq.search("Five"));
 		System.out.println(llq.first());
 		System.out.println(llq.remove());
 		System.out.println(llq.size());
+		LinkedListQueue l=llq.reverse();
+		System.out.println(l.toString());
+//		LinkedListQueue merged=llq.merge(llq,lq);
+//		System.out.println(merged.size());
+//		for(Node i=l.head.next;i!=l.head;i=i.next) {
+//			System.out.println(i.data);
+//		}
+//		System.out.println(merged.toString());
 	}
 
 	@Override
@@ -59,7 +72,44 @@ public class LinkedListQueue implements Queue{
 			throw new IllegalArgumentException("Stack is Empty.");
 		return head.next.data;
 	}
+	
+	public LinkedListQueue reverse() {
+		LinkedListQueue llq=new LinkedListQueue();
+		for(Node i=this.head.prev;i!=this.head;i=i.prev) {
+			llq.head.next.data=new Node(i.data);
+//			System.out.println(84);
+		}
+//		this.head=llq.head;
+		return llq;
+	}
+	
+	// To be Defined
+	public void merge(LinkedListQueue llq2) {
+		
+	}
 
+	public LinkedListQueue merge(LinkedListQueue lls1,LinkedListQueue lls2) {
+		LinkedListQueue lls=new LinkedListQueue();
+		lls.head=lls1.head;
+//		lls.head.next=lls1.head.next;
+		lls.head.prev=lls1.head.prev;
+		lls.size=lls1.size;
+		for (Node i=lls1.head.next;i!=lls1.head;i=i.next) {
+			if(i.next==lls1.head) {
+				System.out.println("JONNY");
+				lls.head.prev=lls2.head.next;
+//				lls.head.prev=lls2.head.prev;
+				lls.size+=lls2.size;
+			}
+		}
+		for (Node i=lls.head.next;i!=null;i=i.next) {
+			if(i.next==null) {
+				lls.head.prev=i;
+			}			
+		}
+		return lls;
+	}
+	
 	@Override
 	public Object remove() {
 		// TODO Auto-generated method stub
@@ -74,7 +124,27 @@ public class LinkedListQueue implements Queue{
 		}
 		return n.data;
 	}
+	
+	public String toString() {
+		String str=" ";
+		if(head.next==null) 
+		throw new IllegalArgumentException("Stack is Empty.");
+		for(Node i=this.head.next;i!=head.prev.next;i=i.next) {
+			str+=(i.data+".     ");
+		}
+		return str;
+	}
 
+	public boolean search(Object o) {
+		boolean res=false;
+		for(Node i=this.head.next;i!=head.prev.next;i=i.next) {
+			if(i.data==o) {
+				res=true;
+			}
+		}
+		return res;
+	}
+	
 	@Override
 	public int size() {
 		// TODO Auto-generated method stub
