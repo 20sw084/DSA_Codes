@@ -21,14 +21,27 @@ public class Node {
 				return large;
 	}
 
-	public static void getMultiplication(Node n) {
-		int first = n.data,last=0;
-		for(Node i=n;i!=null;i=i.next) {
+	public void getMultiplication() {
+		int first = this.data,last=0;
+		Node temp=new Node(this.next.data);
+		Node tempCopy=temp;
+		for(Node i=this.next;i!=null;i=i.next) {
 			if(i.next==null) {
 				last=i.data;
 			}
+			else {
+				if(i.data==this.next.data) {
+					
+				}
+				else {
+				temp=temp.next=new Node(i.data);
+				}
+			}
 		}
-		System.out.println("Multiplaction of First and Last Node is : "+first*last);
+		this.data=tempCopy.data;
+		this.next=tempCopy.next;
+		System.out.println("Multiplication of First "
+				+ "and Last Node is : "+first*last);
 	}
 	
 	public static int getLowest(Node n) {
@@ -84,7 +97,10 @@ public class Node {
 			System.out.println(i.data);
 		}
 		
-		getMultiplication(start);
+		start.getMultiplication();
+		for(Node i=start;i!=null;i=i.next) {
+			System.out.println(i.data);
+		}
 	}
 
 }
