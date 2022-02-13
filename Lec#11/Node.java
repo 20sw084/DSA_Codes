@@ -21,6 +21,16 @@ public class Node {
 				return large;
 	}
 
+	public static void getMultiplication(Node n) {
+		int first = n.data,last=0;
+		for(Node i=n;i!=null;i=i.next) {
+			if(i.next==null) {
+				last=i.data;
+			}
+		}
+		System.out.println("Multiplaction of First and Last Node is : "+first*last);
+	}
+	
 	public static int getLowest(Node n) {
 		int small=n.data;
 		for(Node i=n;i!=null;i=i.next) {
@@ -73,6 +83,8 @@ public class Node {
 		for(Node i=merged;i!=null;i=i.next) {
 			System.out.println(i.data);
 		}
+		
+		getMultiplication(start);
 	}
 
 }
