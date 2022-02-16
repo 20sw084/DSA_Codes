@@ -36,17 +36,21 @@ public class ArrayQueue implements Queue{
 		if(size==data.length) {
 			resize();
 		}
-		if(size==0) {
+		boolean added=false;
+		if(size==0 || data[0]==null) {
 			data[0]=obj;
+			size++;
+			added=true;
 		}
+		if(added==false) {
 			for(int i=0;i<size;i++) {
-				System.out.println(i);
 				if(data[i+1]==null) {
 					data[i+1]=obj;
 					this.size++;
 					break;
 				}
 			}
+		}
 	}
 
 	@Override
@@ -62,12 +66,13 @@ public class ArrayQueue implements Queue{
 		for(int i=0;i<data.length;i++) {
 			data[i]=data[i+1];
 		}
+		size--;
 		return res;
 	}
 
 	public String toString() {
 		String str="";
-		for(int i=0;i<this.size;i++) {
+		for(int i=0;i<data.length;i++) {
 			str+=data[i]+".\t";
 		}
 		return str;
@@ -79,19 +84,15 @@ public class ArrayQueue implements Queue{
 		return size;
 	}
 	public static void main(String[] args) {
-		Object obj[]=new Object[10];
-//		obj[0]=15;
-//		obj[1]=30;
-//		obj[2]=45;
-//		obj[3]=60;
-//		obj[4]=75;
-		ArrayQueue aq=new ArrayQueue(obj,5);
+		ArrayQueue aq=new ArrayQueue(new Object[10],5);
 		aq.add(15);
 		aq.add(30);
 		aq.add(45);
 		aq.add(60);
 		aq.add(75);
-		
+		aq.remove();
+		System.out.println(aq.first());
+		System.out.println(aq.size());
 //		aq.size=5;
 //		aq.add(84);
 		System.out.println(aq);
