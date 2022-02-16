@@ -30,17 +30,19 @@ public class LinkedListQueue implements Queue{
 		llq.add("Three");
 		llq.add("Four");
 		llq.add("Five");
-//		LinkedListQueue lq=new LinkedListQueue();
-//		lq.add("One");
-//		lq.add("Two");
-//		lq.add("Three");
-//		lq.add("Four");
-//		lq.add("Five");
+		LinkedListQueue lq=new LinkedListQueue();
+		lq.add("One");
+		lq.add("Two");
+		lq.add("Three");
+		lq.add("Four");
+		lq.add("Five");
 		System.out.println(llq.search("Five"));
-		System.out.println(llq.first());
-		System.out.println(llq.remove());
-		System.out.println(llq.size());
+//		System.out.println(llq.first());
+//		System.out.println(llq.remove());
+//		System.out.println(llq.size());
 		llq.reverse();
+//		llq.insert("Midd");
+//		llq.merge(lq);
 		System.out.println(llq.toString());
 //		LinkedListQueue merged=llq.merge(llq,lq);
 //		System.out.println(merged.size());
@@ -62,6 +64,20 @@ public class LinkedListQueue implements Queue{
 		else {
 			head.prev=head.prev.next=new Node(obj,head,head.prev);
 			++size;
+		}
+	}
+	public void insert(Object o) {
+		int count=1;
+		int midPosition=this.size/2;
+		System.out.println(midPosition);
+		for(Node i=head.next;i!=head.prev.next;i=i.next) {	
+			System.out.println(midPosition);
+			if(count==midPosition) {
+				System.out.println(midPosition+1);
+				i.next=new Node(o);
+				this.size++;
+			}
+			count++;
 		}
 	}
 
@@ -95,29 +111,10 @@ public class LinkedListQueue implements Queue{
 	
 	// To be Defined
 	public void merge(LinkedListQueue llq2) {
-		
-	}
-
-	public LinkedListQueue merge(LinkedListQueue lls1,LinkedListQueue lls2) {
-		LinkedListQueue lls=new LinkedListQueue();
-		lls.head=lls1.head;
-//		lls.head.next=lls1.head.next;
-		lls.head.prev=lls1.head.prev;
-		lls.size=lls1.size;
-		for (Node i=lls1.head.next;i!=lls1.head;i=i.next) {
-			if(i.next==lls1.head) {
-				System.out.println("JONNY");
-				lls.head.prev=lls2.head.next;
-//				lls.head.prev=lls2.head.prev;
-				lls.size+=lls2.size;
-			}
-		}
-		for (Node i=lls.head.next;i!=null;i=i.next) {
-			if(i.next==null) {
-				lls.head.prev=i;
-			}			
-		}
-		return lls;
+		this.head.prev.next=llq2.head.next;
+		llq2.head.next.prev=this.head.prev;
+		llq2.head.prev.next=this.head;
+		this.head.prev=llq2.head.prev;
 	}
 	
 	@Override
@@ -164,3 +161,4 @@ public class LinkedListQueue implements Queue{
 }
 
 
+//https://www.youtube.com/watch?v=
