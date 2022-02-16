@@ -1,4 +1,4 @@
-
+ 
 public class LinkedListQueue implements Queue{
 	
 	Node head=new Node();
