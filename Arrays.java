@@ -27,7 +27,7 @@ public class Arrays_2
 
 
 
-public class Arrays_1
+public class Arrays_1 
 {
 	public static void main(String[] args) {
 	    String[] strarr =new String[5];
