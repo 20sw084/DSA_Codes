@@ -62,8 +62,48 @@ public class LinkedListStack1 implements Stack{
 			}
 			System.out.println();
 		}
-		
-		
+		public Object lastElement() {
+		if(this.data==null) {
+			throw new IllegalArgumentException("<STACK IS EMPTY RIGHT NOW>");
+		}
+		LinkedListStack1 i=this;
+		return i.data;
+		}
+		public Object thirdElement() {
+			if(this.data==null) {
+				throw new IllegalArgumentException("<STACK IS EMPTY RIGHT NOW>");
+			}
+			LinkedListStack1 i=this;
+			return i.next.next.data;
+		}
+		public void evenElements() {
+			if(this.data==null) {
+				throw new IllegalArgumentException("<STACK IS EMPTY RIGHT NOW>");
+			}
+			LinkedListStack1 i=this;
+			for(i=this;i!=null;i=i.next) {
+				if((Integer) i.data%2==0) {
+				System.out.print(i.data+".  ");
+				}
+			}
+		}
+		public void oddElements() {
+			if(this.data==null) {
+				throw new IllegalArgumentException("<STACK IS EMPTY RIGHT NOW>");
+			}
+			LinkedListStack1 i=this;
+			for(i=this;i!=null;i=i.next) {
+				if((Integer) i.data%2==1) {
+				System.out.print(i.data+".  ");
+				}
+			}
+		}
+//		Last element 
+//		third element 
+//		even 
+//		odd 
+//		linkedstack to array
+//		Array stack to string
 		public static void main(String[] args) {
 			LinkedListStack1 lls=new LinkedListStack1("KIWI");
 			LinkedListStack1 llsCopy=lls;
@@ -81,5 +121,11 @@ public class LinkedListStack1 implements Stack{
 			llsCopy.pop();
 			System.out.println(llsCopy.peek());
 			llsCopy.print();
+			System.out.println(llsCopy.lastElement());
+			System.out.println(llsCopy.thirdElement());
+			
+			LinkedListStack1 l=new LinkedListStack1(101);
+			l.evenElements();
+			l.oddElements();
 		}
 }
