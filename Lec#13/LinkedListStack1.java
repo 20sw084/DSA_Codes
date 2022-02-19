@@ -62,6 +62,13 @@ public class LinkedListStack1 implements Stack{
 			}
 			System.out.println();
 		}
+		public String toString() {
+			String str="";
+			for(LinkedListStack1 i=this;i!=null;i=i.next) {
+				str+=i.data+".  ";
+			}
+			return str;
+		}
 		public Object lastElement() {
 		if(this.data==null) {
 			throw new IllegalArgumentException("<STACK IS EMPTY RIGHT NOW>");
@@ -98,12 +105,6 @@ public class LinkedListStack1 implements Stack{
 				}
 			}
 		}
-//		Last element 
-//		third element 
-//		even 
-//		odd 
-//		linkedstack to array
-//		Array stack to string
 		public static void main(String[] args) {
 			LinkedListStack1 lls=new LinkedListStack1("KIWI");
 			LinkedListStack1 llsCopy=lls;
@@ -127,5 +128,6 @@ public class LinkedListStack1 implements Stack{
 			LinkedListStack1 l=new LinkedListStack1(101);
 			l.evenElements();
 			l.oddElements();
+			System.out.println(llsCopy);
 		}
 }
