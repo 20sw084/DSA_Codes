@@ -150,6 +150,61 @@ public class ArrayQueue implements Queue{
 		return as;
 	}
 	
+	public LinkedListQueue toLinkedQueue() {
+		LinkedListQueue llq=new LinkedListQueue();
+		for(int i=0;i<this.data.length;i++) {
+			if(data[i]!=null)
+			llq.add(data[i]);
+		}
+		return llq;
+	}
+	
+	public void deQueue(Object obj,String end) {
+		if(end.equalsIgnoreCase("rear")) {
+		if(size<=data.length) {
+			resize();
+		}
+		boolean added=false;
+		if(size==0 || data[0]==null) {
+			data[0]=obj;
+			size++;
+			added=true;
+		}
+		if(added==false) {
+			for(int i=0;i<size;i++) {
+				if(data[i+1]==null) {
+					data[i+1]=obj;
+					this.size++;
+					break;
+				}
+			}
+		}
+		}
+		else if(end.equalsIgnoreCase("front")) {
+			if(size<=data.length) {
+				resize();
+			}
+			boolean added=false;
+			if(size==0 || data[0]==null) {
+				data[0]=obj;
+				size++;
+				added=true;
+			}
+			if(added==false) {
+				ArrayQueue a=new ArrayQueue();
+				a.add(obj);
+				for(int i=0;i<size;i++) {
+						a.add(data[i]);	
+				}
+				this.data=a.data;
+				this.size++;
+			}
+		}
+		else {
+			System.out.println("In De-Queue, You can insert elements only on rear and front end.");
+		}
+	}
+	
 	public static void main(String[] args) {
 		ArrayQueue aq=new ArrayQueue(new Object[1]);
 		aq.add(15);
@@ -158,19 +213,26 @@ public class ArrayQueue implements Queue{
 		aq.add(60);
 		aq.add(75);
 		aq.add(90);
-//		aq.remove();
-//		System.out.println(aq.first());
-//		System.out.println(aq.size());
-//		aq.size=5;
-//		aq.add(84);
-//		System.out.println(aq);
-//		System.out.println(aq.equals(90));
-//		aq.removeBottomElement();
-//		aq.reverse();
-//		aq.display();
+		aq.remove();
+		System.out.println("After remove() first element becomes:  "+aq.first());
+		System.out.println("Size of Queue is:  "+aq.size());
+		aq.add(84);
+		System.out.println("Queue after adding element 84 is:  "+aq);
+		System.out.println("Is Queue have Elemene 90??  "+aq.equals(90));
+		aq.removeBottomElement();
+		System.out.println("After Removing Bottom Element is:  "+aq);
+		aq.reverse();
+		System.out.println("After Reversing Queue is:  "+aq);
+		System.out.println("Printing Array Queue:  ");
+		aq.display();
+		LinkedListQueue lq=aq.toLinkedQueue();
+		System.out.println("To Linked Queue is:  "+lq.toString());
+		aq.deQueue(10, "front");
+		System.out.println("After deQueuing Element 10 on front is :  "+aq);
 		ArrayStack as=aq.toStack();
-		as.peek();
-//		ArrayQueue a=aq.clone();
-//		System.out.println(a.toString());
+		System.out.println("To Array Stack is :  "+as);
+		System.out.println("Peek Element of Stack is :  "+as.peek());
+		ArrayQueue a=aq.clone();
+		System.out.println("Cloned Queue is :  "+a.toString());
 	}	
 }
