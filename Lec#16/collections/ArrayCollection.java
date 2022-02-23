@@ -53,15 +53,16 @@ public class ArrayCollection extends AbstractCollection{
 		bag.add("Four");
 		bag.add("Five");
 		System.out.println(bag);
-		System.out.println(bag.size());
-		Iterator it=bag.iterator();
-		System.out.println(it.next());
-		System.out.println( bag.contains("To"));
-		it.remove();
-		it=bag.iterator();
-		it.next();
-		System.out.println(bag.size());
+//		System.out.println(bag.size());
+//		Iterator it=bag.iterator();
+//		System.out.println(it.next());
+//		System.out.println( bag.contains("To"));
+//		it.remove();
+//		it=bag.iterator();
+//		it.next();
+//		System.out.println(bag.remove("Three"));
+		bag.remove("Five");
+//		System.out.println(bag.size());
 		System.out.println(bag);
 	}
-
 }
