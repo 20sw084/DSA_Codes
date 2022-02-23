@@ -1,4 +1,4 @@
-public class ArrayStack implements Stack { 
+public class ArrayStack implements Stack {
 	int size;
 	Object[] a;
 
