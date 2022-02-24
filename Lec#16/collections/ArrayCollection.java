@@ -1,6 +1,8 @@
 package collections;
+import java.util.Arrays;
+
 public class ArrayCollection extends AbstractCollection{
-	private final int initialLength=16;
+	private final int initialLength=1;
 	public int size;
 	private Object[] data=new Object[initialLength-1];
 	public int size() {
@@ -14,14 +16,9 @@ public class ArrayCollection extends AbstractCollection{
 		return true;
 	}
 	public void resize() {
-		Object[] copy=new Object[data.length];
-		for(int i=0;i<copy.length;i++) {
-			copy[i]=data[i];
-		}
-		data=new Object[copy.length*2];
-		for(int i=0;i<copy.length;i++) {
-			data[i]=copy[i];
-		}
+		Object[] copy=new Object[data.length+1];
+		System.arraycopy(data,0,copy,0,this.size);
+		this.data=copy;
 	}
 	public Iterator iterator() {
 		return new Iterator() {
