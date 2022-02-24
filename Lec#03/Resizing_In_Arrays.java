@@ -1,4 +1,4 @@
- * Write down a program of Resizing an array. 
+ * Write down a program of Resizing an array.
  * (In our case, we are going to double it.)
  */
 package dsaCodes;
