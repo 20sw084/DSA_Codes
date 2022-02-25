@@ -20,7 +20,7 @@ public class BinarySearchArray {
 	}
 	public static void main(String[] args) {
 		int[] data = {1,15,33,42,43,45,67,73,75,77,89,95};
-		System.out.println(search(data,13));
-		
+		System.out.println(search(data,95));
+		System.out.println(search(data,47));
 	}
 }
