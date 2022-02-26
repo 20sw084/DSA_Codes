@@ -1,4 +1,4 @@
-/* 
+/*
 Binary Search:
 	      Binary Search is an efficient way to search data from a data structure.
 Some Pre-Requisites for Binary Search must be available before searching in a data structure.
