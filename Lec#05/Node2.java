@@ -1,8 +1,6 @@
 /* 
- * Write down a program of Linked List. 
- * (In our case, we are going to double it.)
+ * Write down a program of Linked List.
  */
-package dsaCodes;
 
 public class Node2 {
 	int data;
@@ -14,7 +12,9 @@ public class Node2 {
 	// Main Function
 	public static void main(String args[]) {
 		Node2 start=new Node2(30);
-		Node2 n=start;
+		Node2 n=start;		/* Retaining data to access easily
+					 while working storing on copy &
+					 retrieving from original. */
 		n.next=new Node2(60);
 		n=n.next;
 		n.next=new Node2(90);
