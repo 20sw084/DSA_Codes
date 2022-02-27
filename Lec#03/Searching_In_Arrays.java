@@ -2,8 +2,6 @@
  * Write down a program of Searching function which search element 
  * of given index of given array and return that index.
  */
-package dsaCodes;
-
 public class Searching_In_Arrays {
 
 	public static void main(String[] args) {
@@ -22,10 +20,6 @@ public class Searching_In_Arrays {
 			System.out.println("Target Not Found");
 	}
 	public static int search(int[] a, int target) {
-		if(target<0	) {
-			return -1;
-		}		
-		else {
 			int found=0;
 			for(int i=0;i<a.length;i++) {
 				if(target==a[i]) {
@@ -37,7 +31,5 @@ public class Searching_In_Arrays {
 				}
 			}
 			return found;
-		}
 	}
-
 }
