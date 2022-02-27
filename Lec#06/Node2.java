@@ -1,4 +1,3 @@
-package example;
 public class Node2 {
 	int data;
 	Node2 next;
@@ -11,26 +10,30 @@ public class Node2 {
 		this.next=next;
 	}
 	
-	public static void insert(Node2 node,int data) {
-		Node2 n=node;
-		while(n.next!=null) {
-			if(n.next.data>data) {
-				break;
+	public static void insert(Node2 node,int data) { 
+		// Inserts data in sorted form
+		Node2 n=node;  // Keep copy of node 
+		while(n.next!=null) {	// Traverse the whole node
+			if(n.next.data>data) {		// Compares from second data, 
+										// if greater than inserted data.
+				break;					// break the loop
 			}
-			n=n.next;
+			n=n.next;		// Try changing reference of node.
 		}
-		n.next=new Node2(data,n.next);
+		n.next=new Node2(data,n.next);	// Inserts the data at that position.
+										// If data is greater than the whole node,
+										// inserts at last position.
 	}
 
 	public static boolean search(Node2 node,int target) {
-		Node2 n=node;
-		while(n!=null) {
-			if(n.data==target) {
-				return true;
+		Node2 n=node;	// Retains the copy of start so, that start reused for traverse.
+		while(n!=null) {		// Traverse the copy of node 
+			if(n.data==target) {	// If target found
+				return true;	// Jump out of the function
 			}
-			n=n.next;
+			n=n.next;			// Change reference
 		}
-		return false;
+		return false;			// If not found, return false
 	}
 	
 	public static void main(String[] args) {
@@ -41,7 +44,6 @@ public class Node2 {
 		n.next=new Node2(30);
 		n=n.next;
 		n.next=new Node2(35);
-		n=n.next;
 		insert(start,25);
 		System.out.println(search(start,25))                                                                                                                                                                                                                     ;
 		for(Node2 i=start;i!=null;i=i.next) {
