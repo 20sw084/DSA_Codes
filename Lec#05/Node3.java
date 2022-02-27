@@ -1,8 +1,6 @@
 /* 
  * Write down a program of Linked List. 
- * (In our case, we are going to double it.)
  */
-package dsaCodes;
 
 import java.util.Scanner;
 
