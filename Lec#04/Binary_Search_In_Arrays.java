@@ -7,16 +7,12 @@
 */
 
 /* 
- * Write down a program of Binary Search from array. 
- * (In our case, we are going to double it.)
+ * Write down a program of Binary Search in arrays. 
  */
-package dsaCodes;
-
 import java.util.*;
 
 public class BinarySearch_In_Arrays {
 	public static void main(String[] args) {
-				
 		int size=17;
 		int[] arr=new int[size]; 
 		for(int i=0;i<size;i++) {
@@ -35,7 +31,6 @@ public class BinarySearch_In_Arrays {
 	}
 	
 	public static int binarySearch(int[] a, int target) {
-	// Go for binary search from now 
 	
 			int p=0;				// From first index of array
 			int q=a.length-1;		// To Last Index
