@@ -1,5 +1,5 @@
 // Write a function to return the sum of all the elements of a linked list. 
-package example;
+
 public class Node3 {
 	int data;
 	Node3 next;
@@ -12,35 +12,39 @@ public class Node3 {
 		this.next=next;
 	}
 	
-	public static void insert(Node3 node,int data) {
-		Node3 n=node;
-		while(n.next!=null) {
-			if(n.next.data>data) {
-				break;
+	public static void insert(Node3 node,int data) { 
+		// Inserts data in sorted form
+		Node3 n=node;  // Keep copy of node 
+		while(n.next!=null) {	// Traverse the whole node
+			if(n.next.data>data) {		// Compares from second data, 
+										// if greater than inserted data.
+				break;					// break the loop
 			}
-			n=n.next;
+			n=n.next;		// Try changing reference of node.
 		}
-		n.next=new Node3(data,n.next);
+		n.next=new Node3(data,n.next);	// Inserts the data at that position.
+										// If data is greater than the whole node,
+										// inserts at last position.
 	}
 
 	public static boolean search(Node3 node,int target) {
-		Node3 n=node;
-		while(n!=null) {
-			if(n.data==target) {
-				return true;
+		Node3 n=node;	// Retains the copy of start so, that start reused for traverse.
+		while(n!=null) {		// Traverse the copy of node 
+			if(n.data==target) {	// If target found
+				return true;	// Jump out of the function
 			}
-			n=n.next;
+			n=n.next;			// Change reference
 		}
-		return false;
+		return false;			// If not found, return false
 	}
 	
 	public static int addAll(Node3 node) {
-		int sum=0;
+		int sum=0;		// Make a local variable to store sum
 		while(node!=null) {
-			sum+=node.data;
-			node=node.next;
+			sum+=node.data;	// Sum the data 
+			node=node.next;	// Change the reference
 		}
-		return sum;
+		return sum;			// Return that sum to function.
 	}
 	
 	public static void main(String[] args) {
