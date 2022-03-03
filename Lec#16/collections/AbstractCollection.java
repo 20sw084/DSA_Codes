@@ -1,4 +1,4 @@
-package collections; 
+package collections;  
 public abstract class AbstractCollection implements Collections{
 	protected AbstractCollection() {
 	}
