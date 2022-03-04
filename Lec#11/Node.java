@@ -12,7 +12,7 @@ public class Node {
 	this.next=next;
 	}
 	public static int getHighest(Node n) {
-				int large=0;
+				int large=n.data;
 				for(Node i=n;i!=null;i=i.next) {
 					if(i.data>large) {
 						large=i.data;
