@@ -23,23 +23,11 @@ public class Node {
 
 	public void getMultiplication() {
 		int first = this.data,last=0;
-		Node temp=new Node(this.next.data);
-		Node tempCopy=temp;
 		for(Node i=this.next;i!=null;i=i.next) {
 			if(i.next==null) {
 				last=i.data;
 			}
-			else {
-				if(i.data==this.next.data) {
-					
-				}
-				else {
-				temp=temp.next=new Node(i.data);
-				}
-			}
 		}
-		this.data=tempCopy.data;
-		this.next=tempCopy.next;
 		System.out.println("Multiplication of First "
 				+ "and Last Node is : "+first*last);
 	}
