@@ -90,5 +90,4 @@ public class Node {
 			System.out.println(i.data);
 		}
 	}
-
 }
