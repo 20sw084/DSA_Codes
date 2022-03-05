@@ -48,12 +48,9 @@ public class ArrayStack implements Stack {
 	}
 
 	public void resize() {
-		int len=a.length;
-		Object[] copy=new Object[len+1];
-		for(int i=0;i<a.length;i++) {
-			copy[i]=a[i];
-		}
-		a=copy;
+		Object[] copy=new Object[a.length+1];
+		System.arraycopy(this.a, 0, copy, 0, size);
+		this.a=copy;
 	}
 	
 	public List toLinkedList() {
