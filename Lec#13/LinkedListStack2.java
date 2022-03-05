@@ -1,130 +1,236 @@
+import java.util.*;
 
-public class LinkedListStack1 implements Stack{
-		Object data;
-		LinkedListStack1 next;
-		int size;
-		public LinkedListStack1() {
-		}
-		public LinkedListStack1(Object data) {
+public class LinkedListStack2 implements Stack{
+		public class Node{
+			Node next;
+			Object data;
+			public Node() {
+				this.data=0;
+			}
+			public Node(Object data) {
+				this.data=data;
+			}
+			public Node(Object data, Node next) { 
 			this.data=data;
+			this.next=next;
+			}
 		}
-		public LinkedListStack1(Object data, LinkedListStack1 next) { 
-		this.data=data;
-		this.next=next;
+		Node top;
+		int size;
+		LinkedListStack2()
+		{
+			this.top = null;
+		}
+		public boolean isEmpty() {
+			return top==null;
 		}
 		@Override
 		public void push(Object obj) {
 			// TODO Auto-generated method stub
-			this.next=new LinkedListStack1(obj,this.next);
+			top=new Node(obj,top);
 			++size;
 		}
 		@Override
 		public Object pop() {
 			// TODO Auto-generated method stub
-			if(this.data==null) {
+			if(size==0) {
 				throw new IllegalArgumentException("<STACK IS EMPTY RIGHT NOW>");
 			}
-			LinkedListStack1 i=this;
-			LinkedListStack1 res=null;
-			while(i.next!=null) {
-				if(i.next.next==null) {
-					res=i.next;
-					i.next=null;
-					break;
-				}
-				i=i.next;
-			}
-			size--;
-			return res;
+			--size;
+			Object tempTop=top.data;
+			top=top.next;
+			return tempTop;
 		}
 		@Override
 		public Object peek() {
 			// TODO Auto-generated method stub
-			if(this.data==null) {
+			if(size==0) {
 				throw new IllegalArgumentException("<STACK IS EMPTY RIGHT NOW>");
 			}
-			LinkedListStack1 i=this;
-			while(i.next!=null) {
-				i=i.next;
-			}
-			return i.data;
+			return top.data;
 		}
 		@Override
 		public int size() {
-			// TODO Auto-generated method stub
 			return size;
 		}
-		
+
 		public void print() {
-			for(LinkedListStack1 i=this;i!=null;i=i.next) {
-				System.out.print(i.data+".  ");
+			for(LinkedListStack2 i=this;i.top!=null;i.top=i.top.next) {
+				System.out.print(i.top.data+".  ");
 			}
-			System.out.println();
+		System.out.println();
 		}
+
 		public String toString() {
-			String str="[";
-			for(LinkedListStack1 i=this;i!=null;i=i.next) {
+			String str="";
+			Node i=this.top;
+			for( i=this.top;i!=null;i=i.next) {
 				str+=i.data+".  ";
 			}
-			return str+"]";
+			return str;
 		}
-		public Object lastElement() {
-			if(this.data==null) {
-				throw new IllegalArgumentException("<STACK IS EMPTY RIGHT NOW>");
-			}
-		return this.data;
-		}
-		public Object thirdElement() {
-			if(this.data==null) {
-				throw new IllegalArgumentException("<STACK IS EMPTY RIGHT NOW>");
-			}
-			return this.next.next.data;
-		}
-		public void evenElements() {
-			if(this.data==null) {
-				throw new IllegalArgumentException("<STACK IS EMPTY RIGHT NOW>");
-			}
-			LinkedListStack1 i=this;
-			for(i=this;i!=null;i=i.next) {
-				if((Integer) i.data%2==0) {
-					System.out.print(i.data+".  ");
+
+		public boolean equals(Object obj) {
+			boolean found=false;
+			for(LinkedListStack2 i=this;i.top!=null;i.top=i.top.next) {
+				System.out.print(899);
+				if(i.top.data==obj) {
+					found=true;
+					break;
 				}
 			}
+			return found;
 		}
-		public void oddElements() {
-			if(this.data==null) {
-				throw new IllegalArgumentException("<STACK IS EMPTY RIGHT NOW>");
-			}
-			LinkedListStack1 i=this;
-			for(i=this;i!=null;i=i.next) {
-				if((Integer) i.data%2==1) {
-				System.out.print(i.data+".  ");
+
+		public void removeSecondLastElement() {
+			if(this.top == null)  throw new NoSuchElementException();
+//			Node i=null;
+//			Node iCopy=i;
+//			size--;
+//			for (i=this.top;i.next!=null;i=i.next) {
+//				if(i.next.next==null) {
+//					i=i.next;
+//					break;
+////					System.out.println(d);
+//				}
+//			}
+//			this.top=iCopy;
+////			this.top=reverse(this);
+			size=0;
+			LinkedListStack2 temp=new LinkedListStack2();
+			for(Node i=this.top;i.next!=null;i=i.next) {
+				if(i.next.next!=null) {
+					temp.push(i.data);
+					size++;
 				}
+				else if(i.next.next==null) {
+					temp.push(i.next.data);
+					size++;
+					break;
+				}
+				this.top=reverse(temp);
 			}
 		}
-		public static void main(String[] args) {
-			LinkedListStack1 lls=new LinkedListStack1("KIWI");
-			LinkedListStack1 llsCopy=lls;
-							lls.next=new LinkedListStack1("PineApple");
-							lls=lls.next;
-							lls.next=new LinkedListStack1("Banana");
-							lls=lls.next;
-							lls.next=new LinkedListStack1("Orange");
-							lls=lls.next;
-							lls.next=new LinkedListStack1("Apple");
-							lls=lls.next;
-							lls.next=new LinkedListStack1("Guava");
-							lls=lls.next;
-							lls.next=new LinkedListStack1("Strawberry");
-//			System.out.println(llsCopy.pop());
-//			System.out.println(llsCopy.peek());
-//			llsCopy.print();
-			System.out.println(llsCopy.lastElement());
-			System.out.println(llsCopy.thirdElement());
-			
-			LinkedListStack1 l=new LinkedListStack1(101);
-			l.evenElements();
-			l.oddElements();
-			System.out.println(llsCopy);
+
+	public Object secondLastElement() {
+		if(this.top == null)  throw new NoSuchElementException();
+		for (Node i=this.top;i.next!=null;i=i.next) {
+			if(i.next.next==null) {
+				return i.data;
+//				System.out.println(d);
+			}
 		}
+//		this.top=reverse(this);
+		return this;
+	}
+
+	public Object bottomElement() {
+		if(this.top == null)  throw new NoSuchElementException();
+		for (Node i=this.top;i!=null;i=i.next) {
+			if(i.next==null) {
+				return i.data;
+//				System.out.println(d);
+			}
+		}
+		this.top=reverse(this);
+		return this;
+	}
+
+
+	public void removeBottomElement() {
+		if(size==0) {
+			throw new IllegalArgumentException("Stack is Empty");
+		}
+		size=0;
+		LinkedListStack2 temp=new LinkedListStack2();
+		for(Node i=this.top;i!=null;i=i.next) {
+			if(i.next!=null) {
+				temp.push(i.data);
+				size++;
+			}
+			else {
+			}
+		}
+		this.top=reverse(temp);
+	}
+
+	public Node reverse(LinkedListStack2 lls) {
+		LinkedListStack2 llsCopy=new LinkedListStack2();
+		for(Node i=lls.top;i!=null;i=i.next) {
+			llsCopy.push(i.data);
+		}
+		return llsCopy.top;
+	}
+
+	public Object secondElement() {
+		return this.top.next.data;
+	}
+
+	public void removeSecondElement() {
+		if(size==0) {
+			throw new IllegalArgumentException("Stack is Empty");
+		}
+		this.top.next=this.top;
+	}
+
+
+	public ArrayStack toArrayStack() {
+		ArrayStack as=new ArrayStack();
+		int sizeCopy=size;
+		int sizeCopy1=size;
+		int i=0;
+		as.a=new Object[size];
+		Object[] ob=new Object[size];
+		while(sizeCopy!=0) {
+			ob[i]=pop();
+//			as=as.;
+			i++;
+			--sizeCopy;
+		}
+		// For Direct toArray in reverse form
+//		for(int k=0;k<ob.length;k++)
+//		{
+//		as.a[k]=ob[k];
+//		}
+		//First reverse it to make direct toArray
+		int j=0;
+		for(int k=(ob.length-1);k>=0;k--)
+		{
+		as.a[j]=ob[k];
+		j++;
+		}			
+		as.size=sizeCopy1;
+		return as;
+	}
+
+	public static void main(String[] args) {
+		LinkedListStack2 lls=new LinkedListStack2();
+		lls.push("KIWI");
+		lls.push("PineApple");
+		lls.push("Banana");
+		lls.push("Orange");
+		lls.push("Apple");
+		lls.push("Guava");
+		lls.push("Strawberry");
+		lls.pop();
+//		System.out.println(lls.toString());
+		lls.top=lls.reverse(lls);
+//		System.out.println(lls.peek());
+		System.out.println(lls.bottomElement());
+		System.out.println(lls.secondLastElement());
+//		lls.removeBottomElement();
+		lls.removeSecondLastElement();
+//		ArrayStack toArr=lls.toArrayStack();
+//		int j=0;
+//		for(ArrayStack i=toArr;i.size!=0;i.size--) {				
+//			System.out.println(i.a[j]);j++;
+//		}
+//		System.out.println(lls.equals("Apple"));
+////		lls.print();
+//		lls.removeBottomElement();
+		lls.print();
+//		System.out.println(lls.secondElement());
+//		lls.removeSecondElement();
+//		lls.print();
+	}
 }
