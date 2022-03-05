@@ -12,16 +12,16 @@ public class List {
 		this.next=next;
 		}
 		public static List insert(List node,Object elem) {
-//			if(node==null||node.data>elem) {
-//				node=new List(elem,node);
-//				return node;
-//			}
+			if(node==null||node.data>elem) {
+				node=new List(elem,node);
+				return node;
+			}
 			List t=node;
-//			for(t=node;t.next!=null;t=t.next) {
-//				if(t.next.data>elem) {
-//					break;
-//				}
-//			}
+			for(t=node;t.next!=null;t=t.next) {
+				if(t.next.data>elem) {
+					break;
+				}
+			}
 			t.next=new List(elem,t.next);
 			t=t.next;
 			return node;
