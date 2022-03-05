@@ -33,8 +33,9 @@ public class ArrayStack implements Stack {
 		if(size==0) {
 			throw new IllegalArgumentException("Stack is Empty");
 		}
-		
-		return a[--size];
+		Object temp=a[size-1];
+		a[--size]=null;
+		return temp;
 	}
 
 
@@ -56,7 +57,7 @@ public class ArrayStack implements Stack {
 	public List toLinkedList() {
 		List list=new List(a[0]);
 		List listCopy=list;
-		for(int i=1;i<a.length;i++) {
+		for(int i=1;i<this.size;i++) {
 			listCopy.next=new List(a[i]);
 			listCopy=listCopy.next;
 		}
@@ -64,18 +65,18 @@ public class ArrayStack implements Stack {
 	}
 	
 	public LinkedListStack1 toLinkedStack() {
-		LinkedListStack1 lts=new LinkedListStack1(a[0]);
+		LinkedListStack1 lts=new LinkedListStack1(this.a[0]);
 		LinkedListStack1 ltsCopy=lts;
-		for(int i=1;i<a.length;i++) {
-			lts.next=new LinkedListStack1(a[i]);	
-			lts=lts.next;
+		for(int i=1;i<this.size;i++) {
+			ltsCopy.next=new LinkedListStack1(a[i]);
+			ltsCopy=ltsCopy.next;
 		}
-		return ltsCopy;
+		return lts;
 	}
 	
 	public String toString() {
 		String str="Element 1:\t"+a[0];
-		for(int i=1;i<a.length;i++) {
+		for(int i=1;i<size;i++) {
 			str+="\nElement "+(i+1)+":\t"+a[i];
 		}
 		return str;
@@ -87,17 +88,16 @@ public class ArrayStack implements Stack {
 	}
 	
 	public boolean isEmpty() {
-		return (size==0)?true:false;
+		return (size==0);
 	}
 	
 	public boolean equals(Object obj) {
-		int found=0;
 		for(int i=0;i<a.length;i++) {
 			if(a[0]==obj) {
-				found++;
+				return true;
 			}
 		}
-		return (found==0)?false:true;
+		return false;
 	}
 	
 	public Object bottomElement() {		
@@ -145,28 +145,25 @@ public class ArrayStack implements Stack {
 		as.push("KIWI");
  		as.push("PineApple");
 		as.push("Banana");
-// 		as.pop();
+ 		as.pop();
 		as.push("Orange");
  		as.push("Apple");
 		as.push("Guava");
 		as.push("Strawberry");
-//		System.out.println("Size of Array is: "+as.size());
-//		System.out.println(as.peek());
+		System.out.println("Size of Array is: "+as.size());
+		System.out.println(as.peek());
 		
-//		List list=as.toLinkedList();
+		List list=as.toLinkedList();
 			
 		
-		LinkedListStack1 lts=as.toLinkedStack();
+		System.out.println(as.toLinkedStack());
 		
-		for(LinkedListStack1 i=lts;i!=null;i=i.next) {
-			System.out.println(i.data);
-		}
-//		System.out.println(as.equals("KIW"));	
-//		System.out.println(as.bottomElement());	
-//		as.removeBottomElement();	
-//		System.out.println(as.secondElement());
-//        as.removeSecondElement();
-//		System.out.println(as.toString());	
+		System.out.println(as.equals("KIW"));	
+		System.out.println(as.bottomElement());	
+		as.removeBottomElement();	
+		System.out.println(as.secondElement());
+        as.removeSecondElement();
+		System.out.println(as.toString());	
 		
 	}
 }
