@@ -41,6 +41,9 @@ public class ArrayStack implements Stack {
 	@Override
 	public Object peek() {
 		// TODO Auto-generated method stub
+		if(size==0) {
+			throw new IllegalArgumentException("Stack is Empty");
+		}
 		return a[--size];
 	}
 
