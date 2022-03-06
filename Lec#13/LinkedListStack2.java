@@ -1,4 +1,4 @@
-import java.util.*; 
+import java.util.*;  
 
 public class LinkedListStack2 implements Stack{
 		public class Node{
