@@ -1,4 +1,4 @@
-package collections;  
+package collections; 
 
 public interface Iterator {
 	public boolean hasNext();
