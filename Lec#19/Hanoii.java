@@ -23,3 +23,14 @@ public class Hanoii {
 		Hanoii.getMinMoves(3);
 	}
 }
+
+/* 
+A ---> C
+A ---> B
+C ---> B
+A ---> C
+B ---> A
+B ---> C
+A ---> C
+7
+*/
