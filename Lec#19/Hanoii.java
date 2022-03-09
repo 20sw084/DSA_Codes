@@ -1,4 +1,4 @@
-public class Hanoii {
+public class Hanoii { 
 	public static void hanoii(int n,char source,char dest,char aux) {
 		if(n==1) {
 			System.out.println(source+" ---> "+dest);
