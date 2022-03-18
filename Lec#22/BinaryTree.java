@@ -30,16 +30,47 @@ public class BinaryTree {
 	public void setRight(BinaryTree right) {
 		this.right = right;
 	}
+	// In Order Traversal
+//	@Override
+//	public String toString() {
+//		StringBuffer buf=new StringBuffer("");
+//		if(left!=null) {
+//			buf.append(left+",");
+//		}
+//		buf.append(root);
+//		if(right!=null) {
+//			buf.append(","+right);
+//		}
+//		
+//		return buf + "";
+//	}
+
+	// Pre Order Traversal
+//	@Override
+//	public String toString() {
+//		StringBuffer buf=new StringBuffer("");
+//		buf.append(root);
+//		if(left!=null) {
+//			buf.append(","+left);
+//		}
+//		if(right!=null) {
+//			buf.append(","+right);
+//		}
+//		
+//		return buf + "";
+//	}
+	
+	// Post Order Traversal
 	@Override
 	public String toString() {
 		StringBuffer buf=new StringBuffer("");
 		if(left!=null) {
 			buf.append(left+",");
 		}
-		buf.append(root);
 		if(right!=null) {
-			buf.append(","+right);
+			buf.append(right+",");
 		}
+		buf.append(root);
 		
 		return buf + "";
 	}
@@ -50,6 +81,8 @@ public class BinaryTree {
 		BinaryTree treeC =new BinaryTree("C",treeD,treeE);
 		BinaryTree tree =new BinaryTree("A",treeB,treeC);
 		
+		
 		System.out.println(tree);
+		
 	}
 }
