@@ -193,17 +193,6 @@ public class BinaryTree {
 		}
 		return null;	
 	}
-	
-	public int numberOfNodes() { //to be implemented..
-		if(root==null) {
-			return -1;
-		}
-		int leftN=0,rightN=0;
-		if(left!=null) leftN=1+left.height();
-		if(right!=null) rightN=1+right.height();
-		
-		return (leftN>rightN)?leftN:rightN;
-	}	
 	public static void main(String[] args) {
 		BinaryTree treeB =new BinaryTree("B");
 		BinaryTree treeD =new BinaryTree("D");
