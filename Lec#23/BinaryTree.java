@@ -1,4 +1,4 @@
-public class BinaryTree { 
+public class BinaryTree {
 	private Object data;
 	private BinaryTree left,right;
 	public BinaryTree(Object data) {
