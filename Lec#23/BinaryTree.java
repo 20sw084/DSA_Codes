@@ -175,6 +175,23 @@ public class BinaryTree {
  		}
  		return null;	
  	}
+	public boolean insert(BinaryTree tree,int obj) {
+ 		if(tree==null) {
+ 			tree.setData(obj);
+ 		}
+ 		if(obj>(int)tree.getData()) {
+ 			insert(tree.getLeft(),obj);
+ 		}
+ 		if(obj<(int)tree.getData()) {
+ 			insert(tree.getRight(),obj);
+ 		}
+ 		return false;
+ 	}
+ 	
+ 	public boolean delete(BinaryTree tree, int obj) {
+ 		return false;
+ 	}
+ 	
 	public static void main(String[] args) {
 		BinaryTree treeB =new BinaryTree("B");
 		BinaryTree treeD =new BinaryTree("D");
