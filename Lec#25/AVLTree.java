@@ -1,4 +1,4 @@
-public class AVLTree {   
+public class AVLTree {  
 	
 	private int key,height;
 	private AVLTree left,right;
