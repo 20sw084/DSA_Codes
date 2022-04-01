@@ -116,22 +116,19 @@ public class AVLTree {
  		}
  	}
 	
-//	public static void main(String[] args) {
-//		AVLTree treeB =new AVLTree("B");
-//		AVLTree treeD =new AVLTree("D");
-//		AVLTree treeE =new AVLTree("E");
-//		AVLTree treeC =new AVLTree("C",treeD,treeE);
-//		AVLTree tree =new AVLTree("A",treeB,treeC);
-//		System.out.println(tree.inOrderTraversal());
-//		System.out.println(treeC.isLeaf());
-//		System.out.println(treeC.size());
-////		System.out.println(treeC.contains("C"));
-////		tree.swap();
-////		System.out.println(tree.contains("A"));
-////		System.out.println(tree.contains("J"));
-//		System.out.println(tree.Right_Most_Of_Left());
-//		System.out.println(tree.Left_Most_Of_Right());
-//		System.out.println(tree.isFull());
-//		System.out.println(tree.insert(tree,67));
-//	}
+	
+	
+	public static void main(String[] args) {
+		AVLTree treeB =new AVLTree(12);
+		AVLTree treeD =new AVLTree(11);
+		AVLTree treeE =new AVLTree(32);
+		AVLTree treeC =new AVLTree(30,treeD,treeE);
+		AVLTree tree =new AVLTree(15,treeB,treeC);
+		System.out.println(tree);
+		System.out.println(treeC.size());
+		System.out.println(tree.grow(34));
+		tree.reBalance();
+		System.out.println(tree.add(23));
+		System.out.println(tree);
+	}
 }	
