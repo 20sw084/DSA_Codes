@@ -1,6 +1,3 @@
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class BinaryTree {
 	private Object data;
 	private BinaryTree left,right;
@@ -69,23 +66,6 @@ public class BinaryTree {
 		}
 		return false;
 	}
-    public boolean isBalanced() {
-    	if(this.getData()==null) {
-    		return true;
-    	}
-    	if(this.getLeft().height()-this.getRight().height() == 0 ||
-    		this.getLeft().height()-this.getRight().height() == 1 ||
-    		this.getLeft().height()-this.getRight().height() == -1 ) {
-    		return true;
-    	}
-    	return false;
-    }
-    public boolean isComplete() {  // TO be defined	
-    	int height=height();
-    	int size=size();
-    	int match=(int) (2*Math.pow(2, height+1));
-    	return match==size;
-    }
     public int size() {
     	if(getLeft()==null && getRight()==null)
     		return 1;
@@ -146,10 +126,15 @@ public class BinaryTree {
 		return present;
     }
     public boolean isFull() {
-    	int height=height();
-    	int size=size();
-    	int match=(int) (2*Math.pow(2, height+1));
-    	return match==size;
+    	if(this.getData()==null)
+    		return true;
+    	if(this.getLeft()==null && this.getRight()==null) {
+    		return true;
+    	}
+    	if(this.getLeft()!=null && this.getRight()!=null) {
+    		return (getLeft().isFull() && getRight().isFull());
+    	}
+    	return false;
     }
     // Swap the left and right tree;
  	public void swap() {
@@ -163,7 +148,7 @@ public class BinaryTree {
  	}
  	
  	// Find out the right most node of the left tree
-	public BinaryTree Right_Most_Of_Left() {
+ 	public Object Right_Most_Of_Left() {
  		if(getData()==null) {
  			return null;
  		}
@@ -171,17 +156,17 @@ public class BinaryTree {
  			for(BinaryTree i=getLeft();i!=null;i=i.getRight()) {
  				if(i.getRight()==null)
  				{
- 					return i;
+ 					return i.getData();
  				}
  			}
  		}
  		return null;	
  	}
- 	
+ 		
  	
  	// Find out the left most node of the right tree
  	
- 	public BinaryTree Left_Most_Of_Right() {
+ 	public Object Left_Most_Of_Right() {
  		if(getData()==null) {
  			return null;
  		}
@@ -189,63 +174,14 @@ public class BinaryTree {
  			for(BinaryTree i=getRight();i!=null;i=i.getLeft()) {
  				if(i.getLeft()==null)
  				{
- 					return i;
+ 					return i.getData();
  				}
  			}
  		}
  		return null;	
  	}
  	
- 	public void printLevelOrder(BinaryTree node)
-    {
-      Queue<BinaryTree> queue = new LinkedList<BinaryTree>();
-      queue.add(node);
-      while (!queue.isEmpty())
-      {   
-        // poll() removes the present head.
-        BinaryTree tempNode = queue.poll();
-        System.out.print(tempNode.data + " ");
-   
-        /*Enqueue left child */
-        if (tempNode.left != null) {
-          queue.add(tempNode.left);
-        }
-   
-        /*Enqueue right child */
-        if (tempNode.right != null) {
-          queue.add(tempNode.right);
-        }
-      }
-    }
- 	
- 	public int degree() {
- 		int deg=0;
-		if(getLeft()!=null) {
-			deg+=1;
-			deg+=getLeft().degree();
-		}
-		if(getRight()!=null) {
-			deg+=1;
-			deg+=getRight().degree();
-		}
-		return deg;
- 	}
- 	
- 	public int numberOfLeaves(BinaryTree tree) {
- 		if (tree == null) 
- 			return 0; 
- 		if (tree.isLeaf()) 
- 		{
- 			return 1; 
- 		} 
- 		else 
- 		{ 
- 			return numberOfLeaves(tree.getLeft()) + 
- 					numberOfLeaves(tree.getRight()); 
- 		}
- 	}
- 	
- 	public boolean insert(BinaryTree tree,int obj) {
+	public boolean insert(BinaryTree tree,int obj) {
  		if(tree==null) {
  			tree.setData(obj);
  		}
@@ -262,27 +198,21 @@ public class BinaryTree {
  		return false;
  	}
  	
- 	
 	public static void main(String[] args) {
-		BinaryTree treeB =new BinaryTree(20,new BinaryTree(12),new BinaryTree(21));
-		BinaryTree treeD =new BinaryTree(40);
-		BinaryTree treeE =new BinaryTree(50);
-		BinaryTree treeC =new BinaryTree(35,treeD,treeE);
-		BinaryTree tree =new BinaryTree(30,treeB,treeC);
+		BinaryTree treeB =new BinaryTree("B");
+		BinaryTree treeD =new BinaryTree("D");
+		BinaryTree treeE =new BinaryTree("E");
+		BinaryTree treeC =new BinaryTree("C",treeD,treeE);
+		BinaryTree tree =new BinaryTree("A",treeB,treeC);
 		System.out.println(tree.inOrderTraversal());
 		System.out.println(treeC.isLeaf());
 		System.out.println(treeC.size());
-//		System.out.println(treeC.contains("C"));
-//		tree.swap();
-//		System.out.println(tree.contains("A"));
-//		System.out.println(tree.contains("J"));
+		System.out.println(treeC.contains("C"));
+		tree.swap();
+		System.out.println(tree.contains("A"));
+		System.out.println(tree.contains("J"));
 		System.out.println(tree.Right_Most_Of_Left());
 		System.out.println(tree.Left_Most_Of_Right());
 		System.out.println(tree.isFull());
-//		System.out.println(tree.insert(tree,67));
-		tree.printLevelOrder(tree);
-		System.out.println(tree.isBalanced());
-		System.out.println(tree.degree());
-		System.out.println(tree.numberOfLeaves(tree));
 	}
-}	
+}
