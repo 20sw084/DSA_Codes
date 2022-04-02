@@ -126,10 +126,15 @@ public class BinaryTree {
 		return present;
     }
     public boolean isFull() {
-    	int height=height();
-    	int size=size();
-    	int match=(int) (2*Math.pow(2, height+1));
-    	return match==size;
+    	if(this.getData()==null)
+    		return true;
+    	if(this.getLeft()==null && this.getRight()==null) {
+    		return true;
+    	}
+    	if(this.getLeft()!=null && this.getRight()!=null) {
+    		return (getLeft().isFull() && getRight().isFull());
+    	}
+    	return false;
     }
     // Swap the left and right tree;
  	public void swap() {
@@ -143,7 +148,7 @@ public class BinaryTree {
  	}
  	
  	// Find out the right most node of the left tree
-	public BinaryTree Right_Most_Of_Left() {
+ 	public Object Right_Most_Of_Left() {
  		if(getData()==null) {
  			return null;
  		}
@@ -151,17 +156,17 @@ public class BinaryTree {
  			for(BinaryTree i=getLeft();i!=null;i=i.getRight()) {
  				if(i.getRight()==null)
  				{
- 					return i;
+ 					return i.getData();
  				}
  			}
  		}
  		return null;	
  	}
- 	
+ 		
  	
  	// Find out the left most node of the right tree
  	
- 	public BinaryTree Left_Most_Of_Right() {
+ 	public Object Left_Most_Of_Right() {
  		if(getData()==null) {
  			return null;
  		}
@@ -169,12 +174,13 @@ public class BinaryTree {
  			for(BinaryTree i=getRight();i!=null;i=i.getLeft()) {
  				if(i.getLeft()==null)
  				{
- 					return i;
+ 					return i.getData();
  				}
  			}
  		}
  		return null;	
  	}
+ 	
 	public boolean insert(BinaryTree tree,int obj) {
  		if(tree==null) {
  			tree.setData(obj);
@@ -209,4 +215,4 @@ public class BinaryTree {
 		System.out.println(tree.Left_Most_Of_Right());
 		System.out.println(tree.isFull());
 	}
-}	
+}
