@@ -1,3 +1,6 @@
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 public class BinaryTree {
 	private Object data;
 	private BinaryTree left,right;
@@ -136,6 +139,63 @@ public class BinaryTree {
     	}
     	return false;
     }
+    
+    public boolean isComplete() {
+    	// return if the tree is empty
+        if (this.getData() == null) {
+            return true;
+        }
+ 
+        // create an empty queue and enqueue the root node
+        Queue<BinaryTree> queue = new ArrayDeque<>();
+        queue.add(this);
+ 
+        // to store the current node
+        BinaryTree front;
+ 
+        // flag to mark the end of full nodes
+        boolean flag = false;
+ 
+        // loop till queue is empty
+        while (!queue.isEmpty())
+        {
+            // dequeue front node
+            front = queue.poll();
+ 
+            // if we have encountered a non-full node before and the current node
+            // is not a leaf, a tree cannot be complete
+            if (flag && (front.left != null || front.right != null)) {
+                return false;
+            }
+ 
+            // if the left child is empty and the right child exists,
+            // a tree cannot be complete
+            if (front.left == null && front.right != null) {
+                return false;
+            }
+ 
+            // if the left child exists, enqueue it
+            if (front.left != null) {
+                queue.add(front.left);
+            }
+            // if the current node is a non-full node, set the flag to true
+            else {
+                flag = true;
+            }
+ 
+            // if the right child exists, enqueue it
+            if (front.right != null) {
+                queue.add(front.right);
+            }
+            // if the current node is a non-full node, set the flag to true
+            else {
+                flag = true;
+            }
+        }
+ 
+        return true;
+    }
+    
     // Swap the left and right tree;
  	public void swap() {
  		if(getLeft()==null || getRight()==null) {
@@ -214,5 +274,6 @@ public class BinaryTree {
 		System.out.println(tree.Right_Most_Of_Left());
 		System.out.println(tree.Left_Most_Of_Right());
 		System.out.println(tree.isFull());
+		System.out.println(tree.isComplete());
 	}
 }
