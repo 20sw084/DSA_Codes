@@ -313,22 +313,69 @@ public class BinaryTree {
  		return null;	
  	}
  	
-	public boolean insert(BinaryTree tree,int obj) {
- 		if(tree==null) {
- 			tree.setData(obj);
- 		}
- 		if(obj>(int)tree.getData()) {
- 			insert(tree.getLeft(),obj);
- 		}
- 		if(obj<(int)tree.getData()) {
- 			insert(tree.getRight(),obj);
- 		}
- 		return false;
- 	}
+ 	 // insert a node in BST 
+    void insert(BinaryTree tree,int key)  { 
+    	tree = insert_Recursive(tree, key); 
+    } 
+   
+    //recursive insert function
+    BinaryTree insert_Recursive(BinaryTree root, int key) { 
+          //tree is empty
+        if (root == null) { 
+            root = new BinaryTree(key);
+            return root; 
+        } 
+        //traverse the tree
+        if (key < (int)root.getData())     //insert in the left subtree
+            root.setLeft(insert_Recursive(root.getLeft(), key)); 
+        else if (key > (int)root.getData())    //insert in the right subtree
+            root.setRight(insert_Recursive(root.getRight(), key)); 
+          // return pointer
+        return root; 
+    } 
  	
- 	public boolean delete(BinaryTree tree, int obj) {
- 		return false;
- 	}
+  //delete a node from BST
+    void delete(BinaryTree tree,int key) { 
+        tree = delete_Recursive(tree, key); 
+    } 
+   
+    //recursive delete function
+    BinaryTree delete_Recursive(BinaryTree tree, int key)  { 
+        //tree is empty
+        if (tree == null)  return tree; 
+   
+        //traverse the tree
+        if (key < (int)tree.getData())     //traverse left subtree 
+            tree.setLeft(delete_Recursive(tree.getLeft(), key)); 
+        else if (key > (int)tree.getData())  //traverse right subtree
+            tree.setRight(delete_Recursive(tree.getRight(), key)); 
+        else  { 
+            // node contains only one child
+            if (tree.getLeft() == null) 
+                return tree.getRight(); 
+            else if (tree.getRight() == null) 
+                return tree.getLeft(); 
+   
+            // node has two children; 
+            //get inorder successor (min value in the right subtree) 
+            tree.setData(minValue(tree.getRight())); 
+   
+            // Delete the inorder successor 
+            tree.setRight(delete_Recursive(tree.getRight(), (int)tree.getData())); 
+        } 
+        return tree; 
+    } 
+   
+    int minValue(BinaryTree root)  { 
+        //initially minval = root
+        int minval = (int)root.getData(); 
+        //find minval
+        while (root.getLeft() != null)  { 
+            minval = (int)root.getLeft().getData(); 
+            root = root.getLeft(); 
+        } 
+        return minval; 
+    } 
  	
 	public static void main(String[] args) {
 		BinaryTree treeB =new BinaryTree("B");
@@ -351,5 +398,19 @@ public class BinaryTree {
 		System.out.println("Level of tree where D is?  "+tree.getLevel("D"));
 		System.out.println("Number of Leaf Nodes of tree is?  "+tree.getNumOfLeafNodes());
 		System.out.println("Degree of tree is : "+tree.degree());
+		
+		BinaryTree treeB2 =new BinaryTree(14);
+		BinaryTree treeD2 =new BinaryTree(18);
+		BinaryTree treeE2 =new BinaryTree(19);
+		BinaryTree treeC2 =new BinaryTree(27,treeD2,treeE2);
+		BinaryTree tree2 =new BinaryTree(15,treeB2,treeC2);
+		System.out.println("Before Insertion, tree is : "+tree2.inOrderTraversal());
+		tree2.insert(tree2, 13);
+		System.out.println("After Insertion, tree is : "+tree2.inOrderTraversal());
+		
+		System.out.println("Before Deletion, tree is : "+tree2.inOrderTraversal());
+		tree2.delete(tree2, 13);
+		System.out.println("After Deletion, tree is : "+tree2.inOrderTraversal());
+
 	}
 }
