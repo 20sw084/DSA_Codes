@@ -197,8 +197,10 @@ public class BinaryTree {
         return true;
     }
     
+    static int deg=0;
+    
     public int degree() {
-    	int deg=0;
+    	
     	if(this.getData()==null){
     		return 0;
     	}
