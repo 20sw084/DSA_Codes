@@ -38,6 +38,7 @@ public class Graph {
 		Graph graph=new Graph(arg);
 		graph.add("A" , "B");
 		graph.add("A" , "C");
+		graph.add("B" , "C");
 		graph.add("B" , "D");
 		graph.add("C" , "D");
 		graph.add("D" , "E");
