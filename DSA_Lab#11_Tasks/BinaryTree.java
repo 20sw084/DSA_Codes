@@ -1,4 +1,5 @@
 import java.util.ArrayDeque;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class BinaryTree {
@@ -196,6 +197,75 @@ public class BinaryTree {
         return true;
     }
     
+    public int degree() {
+    	int deg=0;
+    	if(this.getData()==null){
+    		return 0;
+    	}
+    	if(this.getLeft()!=null){
+    		this.getLeft().degree();
+    		deg++;
+    	}
+    	if(this.getRight()!=null){
+    		this.getRight().degree();
+    		deg++;
+    	}
+    	return deg;
+    }
+    
+    public int getNumOfLeafNodes(){
+    	if(this.getData()==null){
+    	return 0;
+    	}
+//    	Initialize an empty Queue
+		Queue<BinaryTree> q  = new LinkedList<>();
+		// Do level order traversal starting from root
+        int count = 0; // Initialize count of leaves
+        q.add(this);
+        while (!q.isEmpty())
+        {
+            BinaryTree temp = q.peek();
+            q.poll();
+ 
+            if (temp.left != null)
+            {
+                q.add(temp.left);
+            }
+            if (temp.right != null)
+            {
+                q.add(temp.right);
+            }
+            if (temp.left == null &&
+                temp.right == null)
+            {
+                count++;
+            }
+        }
+    	return count;
+    }
+    int getLevelUtil(BinaryTree tree, Object data, int level)
+    {
+        if (tree == null)
+            return 0;
+ 
+        if (tree.getData().equals(data))
+            return level;
+ 
+        int downlevel
+            = getLevelUtil(tree.getLeft(), data, level + 1);
+        if (downlevel != 0)
+            return downlevel;
+ 
+        downlevel
+            = getLevelUtil(tree.getRight(), data, level + 1);
+        return downlevel;
+    }
+ 
+    /* Returns level of given data value */
+    int getLevel(Object data)
+    {
+        return getLevelUtil(this, data, 1);
+    }
     // Swap the left and right tree;
  	public void swap() {
  		if(getLeft()==null || getRight()==null) {
@@ -264,16 +334,20 @@ public class BinaryTree {
 		BinaryTree treeE =new BinaryTree("E");
 		BinaryTree treeC =new BinaryTree("C",treeD,treeE);
 		BinaryTree tree =new BinaryTree("A",treeB,treeC);
-		System.out.println(tree.inOrderTraversal());
-		System.out.println(treeC.isLeaf());
-		System.out.println(treeC.size());
-		System.out.println(treeC.contains("C"));
+		System.out.println("Inorder trsversal of tree is : "+tree.inOrderTraversal());
+		System.out.println("Is TreeC have Leaf?  "+treeC.isLeaf());
+		System.out.println("Size of tree is : "+treeC.size());
+		System.out.println("Is treeC contains C?  "+treeC.contains("C"));
+		System.out.println("Left and Right Trees are swapped. ");
 		tree.swap();
-		System.out.println(tree.contains("A"));
-		System.out.println(tree.contains("J"));
-		System.out.println(tree.Right_Most_Of_Left());
-		System.out.println(tree.Left_Most_Of_Right());
-		System.out.println(tree.isFull());
-		System.out.println(tree.isComplete());
+		System.out.println("Is treeC contains A?  "+tree.contains("A"));
+		System.out.println("Is treeC contains J?  "+tree.contains("J"));
+		System.out.println("Right Most node of left subtree is?  "+tree.Right_Most_Of_Left());
+		System.out.println("Left Most node of right subtree is?  "+tree.Left_Most_Of_Right());
+		System.out.println("Is tree a full binary tree?  "+tree.isFull());
+		System.out.println("Is tree a complete binary tree?  "+tree.isComplete());
+		System.out.println("Level of tree where D is?  "+tree.getLevel("D"));
+		System.out.println("Number of Leaf Nodes of tree is?  "+tree.getNumOfLeafNodes());
+		System.out.println("Degree of tree is : "+tree.degree());
 	}
 }
