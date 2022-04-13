@@ -1,4 +1,4 @@
- //Method 1(int array) 
+ //Method 1(int array)  
 
 public class Arrays_1
 {
