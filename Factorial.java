@@ -1,4 +1,4 @@
-import java.util.Scanner;  
+import java.util.Scanner;
 
 public class Factorial{
 public static long fact(long num) {
