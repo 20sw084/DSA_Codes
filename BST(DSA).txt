@@ -1,0 +1,48 @@
+Binary Trees:
+
+Binary Search Trees:
+
+Terminologies:
+Root:
+
+Parent:
+
+Child:
+
+Leaf/External Node:
+
+Internal Node:
+
+Depth of Node:
+
+Height of Node:
+
+Degree:
+
+Types:
+Rooted Binary Tree:
+
+Complete Binary Tree:
+
+Full Binary Tree:
+
+Balanced Binary Search Tree:
+
+Un-Balanced Binary Search Tree:
+
+Perfect Binary Tree:
+
+Degenerate/Pathological Binary Tree:
+
+Skewed Binary Tree:
+
+// Extended Binary Tree:
+
+Questions:
+Number of Nodes in full binary tree of height 5. also find number of unique binary trees from them.
+Describe a binary tree and explain how this data structure is different from others?
+Binary Tree is recursive in nature?
+
+
+Things to left in binary trees:
+Insertion and deletion of a node in BST
