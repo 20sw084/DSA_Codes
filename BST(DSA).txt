@@ -1,40 +1,71 @@
 Binary Trees:
+Its a tree data structure in which each node have atmost 2 childrens, which are referred to as 
+Left and Right Subtree.
 
 Binary Search Trees:
+Its a special type of binary tree
+For each key in the tree, all the key on its left subtree are less than it and all the keys in 
+its right subtree are greater.
+Its also called an ordered/ sorted binary tree.
 
 Terminologies:
 Root:
+Very first node / parent node.
 
 Parent:
+Very first node having one or more child nodes.
 
 Child:
+Node which has link from its parent node.
 
 Leaf/External Node:
+Node having no child.
 
 Internal Node:
+Any node having its child nodes.
 
 Depth of Node:
+Number of edges from tree root node to the current node.
+eg: Root Node have depth of 0.
 
 Height of Node:
+Number of edges on the longest path from node to the leaf.
+eg:
+Leaf node have height of 0.
 
 Degree:
+Number of subtrees of a node.
+...........OR........
+Total number of its children.
+eg: 
+Binary tree have atmost degree of 2.
 
 Types:
 Rooted Binary Tree:
+root node and having atmost 2 children.
 
 Complete Binary Tree:
+It is a binary tree in which every level, except possibly the last, is completely filled, 
+and all nodes are as far left as possible.
 
 Full Binary Tree:
+It is a tree in which every node in the tree has either 0 or 2 children.
+Minimum Nodes: 2(Height)-1
+Maximum Nodes: 2(h+1) – 1   (for height 5: Maximum Nodes will be 31)
 
 Balanced Binary Search Tree:
-
-Un-Balanced Binary Search Tree:
+A binary tree is height balanced if it satisfies the following constraints:
+The left and right subtrees' heights differ by at most one.
 
 Perfect Binary Tree:
+It is a binary tree in which all interior nodes have two children and all leaves have the 
+same depth or same level.
 
 Degenerate/Pathological Binary Tree:
+It is a tree is where each parent node has only one child node. It behaves like a linked list.
 
 Skewed Binary Tree:
+A skewed binary tree is a type of binary tree in which all the nodes have only either one child or no child.
 
 // Extended Binary Tree:
 
