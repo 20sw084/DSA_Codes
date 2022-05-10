@@ -83,7 +83,7 @@ public class Task2_By_QuadraticProbing {
 		{
 			// Quadratic Probing Condition
 			// 2n+(i*i)
-			entries = new Entry[ (2*oldEntries.length+(int)Math.sqrt(k))];
+			entries = new Entry[ (2*oldEntries.length+(k*k))];
 			Entry entry = oldEntries[k];
 			if(entry == null || entry == nullEntry) continue;
 			int h = hash(entry.key);
