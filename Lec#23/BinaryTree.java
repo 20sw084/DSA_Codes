@@ -1,7 +1,3 @@
-import java.util.ArrayDeque;
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class BinaryTree {
 	private Object data;
 	private BinaryTree left,right;
@@ -83,14 +79,14 @@ public class BinaryTree {
     	if(getData()==null) {
     		return -1;
     	}
-    	int leftNode=0, rightNode=0;
+    	int leftHeight=0, rightHeight=0;
     	if(getLeft()!=null) {
-    		leftNode=1 + getLeft().height();
+    		leftHeight=1 + getLeft().height();
     	}
     	if(getRight()!=null) {
-    		leftNode=1 + getRight().height();
+    		leftHeight=1 + getRight().height();
     	}
-    	return (leftNode>rightNode)?leftNode:rightNode;
+    	return (leftHeight>rightHeight)?leftHeight:rightHeight;
     }
     public boolean contains(Object target) {
     	// Approach 1 (MINE ONE)
@@ -142,66 +138,38 @@ public class BinaryTree {
     }
     
     public boolean isComplete() {
-    	// Check if the tree is Empty
-	int nodes=this.size(); // Size is basically the number of nodes
-	int index=0;
-	if(this.getData()==null) {
-		return true;
-	}
-	if(index>=nodes) {
-		return false;
-	}
-	return (getLeft().isComplete() && getRight().isComplete());		
+//    	// Check if the tree is Empty
+//	int nodes=this.size(); // Size is basically the number of nodes
+//	int index=0;
+//	if(this.getData()==null) {
+//		return true;
+//	}
+//	if(index>=nodes) {
+//		return false;
+//	}
+	return (getLeft().isComplete() && getRight().isComplete());
     }
     
-    static int deg=0;
-    
     public int degree() {
-    	
-    	if(this.getData()==null){
-    		return 0;
-    	}
+    	int deg=0;
     	if(this.getLeft()!=null){
-    		this.getLeft().degree();
     		deg++;
     	}
     	if(this.getRight()!=null){
-    		this.getRight().degree();
     		deg++;
     	}
     	return deg;
     }
     
     public int getNumOfLeafNodes(){
-    	if(this.getData()==null){
-    	return 0;
-    	}
-//    	Initialize an empty Queue
-		Queue<BinaryTree> q  = new LinkedList<>();
-		// Do level order traversal starting from root
-        int count = 0; // Initialize count of leaves
-        q.add(this);
-        while (!q.isEmpty())
-        {
-            BinaryTree temp = q.peek();
-            q.poll();
- 
-            if (temp.left != null)
-            {
-                q.add(temp.left);
-            }
-            if (temp.right != null)
-            {
-                q.add(temp.right);
-            }
-            if (temp.left == null &&
-                temp.right == null)
-            {
-                count++;
-            }
-        }
-    	return count;
+    	if (getData() == null)
+            return 0;
+        if (getLeft() == null && getRight() == null)
+            return 1;
+        else
+            return getLeft().getNumOfLeafNodes() + getRight().getNumOfLeafNodes();
     }
+    
     int getLevelUtil(BinaryTree tree, Object data, int level)
     {
         if (tree == null)
@@ -340,10 +308,10 @@ public class BinaryTree {
 		BinaryTree treeE =new BinaryTree("E");
 		BinaryTree treeC =new BinaryTree("C",treeD,treeE);
 		BinaryTree tree =new BinaryTree("A",treeB,treeC);
-		System.out.println("Inorder trsversal of tree is : "+tree.inOrderTraversal());
+		System.out.println("Inorder traversal of tree is : "+tree.inOrderTraversal());
 		System.out.println("Is TreeC have Leaf?  "+treeC.isLeaf());
-		System.out.println("Size of tree is : "+treeC.size());
-		System.out.println("Is treeC contains C?  "+treeC.contains("C"));
+		System.out.println("Size of tree is : "+tree.size());
+		System.out.println("Is treeC contains C?  "+tree.contains("C"));
 		System.out.println("Left and Right Trees are swapped. ");
 		tree.swap();
 		System.out.println("Is treeC contains A?  "+tree.contains("A"));
@@ -351,7 +319,7 @@ public class BinaryTree {
 		System.out.println("Right Most node of left subtree is?  "+tree.Right_Most_Of_Left());
 		System.out.println("Left Most node of right subtree is?  "+tree.Left_Most_Of_Right());
 		System.out.println("Is tree a full binary tree?  "+tree.isFull());
-		System.out.println("Is tree a complete binary tree?  "+tree.isComplete());
+//		System.out.println("Is tree a complete binary tree?  "+tree.isComplete());
 		System.out.println("Level of tree where D is?  "+tree.getLevel("D"));
 		System.out.println("Number of Leaf Nodes of tree is?  "+tree.getNumOfLeafNodes());
 		System.out.println("Degree of tree is : "+tree.degree());
