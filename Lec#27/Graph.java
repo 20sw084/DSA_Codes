@@ -2,24 +2,24 @@
 public class Graph {
 	int size;
 	String[] vertices;
-	boolean[][] a;
+	boolean[][] adj_matrix;
 	public Graph(String[] args) {
 		size=args.length;
 		vertices=new String[size];
 		System.arraycopy(args, 0, vertices, 0, size);
-		a=new boolean[size][args.length];
+		adj_matrix=new boolean[size][args.length];
 	}
 	public void add(String v,String w) {
 		int i=index(v);
 		int j=index(w);
-		a[i][j]=a[j][i]=true;
+		adj_matrix[i][j]=adj_matrix[j][i]=true;
 	}
 	private int index(String s) {
 		for(int i=0;i<size;i++) {
 			if(vertices[i].equals(s))
 				return i;
 		}
-		return a.length;
+		return adj_matrix.length;
 	}
 	public String toString() {
 
@@ -50,7 +50,7 @@ public class Graph {
 		// TODO Auto-generated method stub
 		StringBuffer buf=new StringBuffer(vertices[i]+": ");
 		for(int j=0;j<size;j++) {
-			if(a[i][j]) {
+			if(adj_matrix[i][j]) {
 				buf.append(vertices[j]);
 			}
 		}
