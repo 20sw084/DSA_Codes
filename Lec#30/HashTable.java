@@ -16,6 +16,7 @@ public class HashTable {
 	}
 	public void put(Object key, Object value) {
 		entries[hash(key)]=new Entry(key,value);
+		size++;
 	}
 	public Object get(Object key) {
 		return entries[hash(key)].value;
