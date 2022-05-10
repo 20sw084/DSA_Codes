@@ -142,59 +142,16 @@ public class BinaryTree {
     }
     
     public boolean isComplete() {
-    	// return if the tree is empty
-        if (this.getData() == null) {
-            return true;
-        }
- 
-        // create an empty queue and enqueue the root node
-        Queue<BinaryTree> queue = new ArrayDeque<>();
-        queue.add(this);
- 
-        // to store the current node
-        BinaryTree front;
- 
-        // flag to mark the end of full nodes
-        boolean flag = false;
- 
-        // loop till queue is empty
-        while (!queue.isEmpty())
-        {
-            // dequeue front node
-            front = queue.poll();
- 
-            // if we have encountered a non-full node before and the current node
-            // is not a leaf, a tree cannot be complete
-            if (flag && (front.left != null || front.right != null)) {
-                return false;
-            }
- 
-            // if the left child is empty and the right child exists,
-            // a tree cannot be complete
-            if (front.left == null && front.right != null) {
-                return false;
-            }
- 
-            // if the left child exists, enqueue it
-            if (front.left != null) {
-                queue.add(front.left);
-            }
-            // if the current node is a non-full node, set the flag to true
-            else {
-                flag = true;
-            }
- 
-            // if the right child exists, enqueue it
-            if (front.right != null) {
-                queue.add(front.right);
-            }
-            // if the current node is a non-full node, set the flag to true
-            else {
-                flag = true;
-            }
-        }
- 
-        return true;
+    	// Check if the tree is Empty
+	int nodes=this.size(); // Size is basically the number of nodes
+	int index=0;
+	if(this.getData()==null) {
+		return true;
+	}
+	if(index>=nodes) {
+		return false;
+	}
+	return (getLeft().isComplete() && getRight().isComplete());		
     }
     
     static int deg=0;
