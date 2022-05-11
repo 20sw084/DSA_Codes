@@ -18,7 +18,7 @@ public class HashTable {
 	public void put(Object key, Object value) {
 		int h=hash(key);
 		for(int i=0;i<entries.length;i++){
-			int j=(h+1)%entries.length;
+			int j=(h+i)%entries.length;
 			Entry entry=entries[j];
 			if(entry==null || entries[j]==NIL) {
 				entries[j]=new Entry(key,value);
