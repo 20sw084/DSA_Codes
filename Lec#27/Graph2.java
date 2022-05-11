@@ -1,8 +1,8 @@
-public class Graph {
+public class Graph2 {
 	int size;
 	String[] vertices;
 	boolean[][] adj_matrix;
-	public Graph(String[] args) {
+	public Graph2(String[] args) {
 		size=args.length;
 		vertices=new String[size];
 		System.arraycopy(args, 0, vertices, 0, size);
@@ -100,7 +100,7 @@ public class Graph {
 	  }
 	public static void main(String[] args) {
 		String[] arg= {"A","B","C","D","E"};
-		Graph graph=new Graph(arg);
+		Graph2 graph=new Graph(arg);
 		graph.add("A" , "B");
 		graph.add("A" , "C");
 		graph.add("B" , "C");
@@ -109,7 +109,7 @@ public class Graph {
 		graph.add("D" , "E");
 		 int graf[][] = new int[][] { { 0, 0, 1, 2, 0, 0, 0 }, { 0, 0, 2, 0, 0, 3, 0 }, { 1, 2, 0, 1, 3, 0, 0 },
 		        { 2, 0, 1, 0, 0, 0, 1 }, { 0, 0, 3, 0, 0, 2, 0 }, { 0, 3, 0, 0, 2, 0, 1 }, { 0, 0, 0, 1, 0, 1, 0 } };
-		Graph.dijkstra(graf,0);
+		Graph2.dijkstra(graf,0);
 		
 		System.out.println(graph);
 	}
