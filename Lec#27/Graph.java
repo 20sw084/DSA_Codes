@@ -1,4 +1,3 @@
-
 public class Graph {
 	int size;
 	String[] vertices;
@@ -39,7 +38,7 @@ public class Graph {
 //		String str="Contents of Graph is:\n";
 //		for(int i=0;i<vertices.length;i++) {
 //			for(int j=0;j<vertices.length;j++) {
-//				if(a[i][j]==true) {
+//				if(adj_matrix[i][j]) {
 //					str+=("Vertex: "+i+"==>"+j+"\n");
 //				}
 //			}
@@ -108,6 +107,7 @@ public class Graph {
 		graph.add("B" , "D");
 		graph.add("C" , "D");
 		graph.add("D" , "E");
+		System.out.println(graph.vertex(2));
 		 int graf[][] = new int[][] { { 0, 0, 1, 2, 0, 0, 0 }, { 0, 0, 2, 0, 0, 3, 0 }, { 1, 2, 0, 1, 3, 0, 0 },
 		        { 2, 0, 1, 0, 0, 0, 1 }, { 0, 0, 3, 0, 0, 2, 0 }, { 0, 3, 0, 0, 2, 0, 1 }, { 0, 0, 0, 1, 0, 1, 0 } };
 		Graph.dijkstra(graf,0);
