@@ -1,4 +1,5 @@
 public class HashTable {
+	private static final HashTable.Entry NIL = null;
 	private Entry[] entries=new Entry[11];
 	private int size;
 	private class Entry{
@@ -15,33 +16,72 @@ public class HashTable {
 		return size;
 	}
 	public void put(Object key, Object value) {
-		entries[hash(key)]=new Entry(key,value);
-		size++;
+		int h=hash(key);
+		for(int i=0;i<entries.length;i++){
+			int j=(h+1)%entries.length;
+			Entry entry=entries[j];
+			if(entry==null || entries[j]==NIL) {
+				entries[j]=new Entry(key,value);
+				++size;
+			}
+		}
 	}
 	public Object get(Object key) {
-		return entries[hash(key)].value;
+		int h=hash(key);
+		for(int i=0;i<entries.length;i++) {
+			int j=(h+1)%entries.length;
+			Entry entry=entries[j];
+			if(entry==null) break;
+			if(entry==NIL) continue;
+			if(entry.key.equals(key)) {
+				return entry.value;
+			}
+		}	
+		return null;
 	}
 	public Object remove(Object key)
 	{
 		int h=hash(key);
-		Object value=entries[h].value;
-		entries[h]=null;
-		--size;
-		return value;
+		if(size>0.75*entries.length) {
+			rehash();
+		}
+		for(int i=0;i<entries.length;i++) {
+		int j=(h+1)%entries.length;
+		if(entries[j]==null) break;
+		if(entries[j].key.equals(key)) {
+			Object value=entries[j].value;
+			entries[j]=NIL;
+			--size;
+			return value;
+		}
+		}
+		return null;
 	}
-	
+	private void rehash() {
+		Entry[] oldEntries=entries;
+		entries=new Entry[2*oldEntries.length+1];
+		for(int k=0;k<oldEntries.length;k++) {
+			Entry entry=oldEntries[k];
+			if(entry==null || entry==NIL) {
+				continue;
+			}
+			int h=hash(entry.key);
+			for(int i=0;i<entries.length;i++) {
+				int j=(h+1)%entries.length;
+				if(entries[j]==null) {
+					entries[j]=entry;
+					break;
+				}
+			}
+		}
+	}
 	public static void main(String[] args) {
-		Country c1=new Country("Pakistan","Urdu",881913,221);
-		Country c2=new Country("Sri-Lanka","Tamil",65610,216);
-		Country c3=new Country("United States","English",3531905,321);
-		Country c4=new Country("United Kingdom","English",93628,67);
-		Country c5=new Country("Portugal","Portugese",92090,10); 
 		HashTable hash=new HashTable();
-		hash.put("PK", c1);
-		hash.put("SL", c2);
-		hash.put("US", c3);
-		hash.put("GB", c4);
-		hash.put("PT", c5);
+		hash.put("PK", "Pakistan");
+		hash.put("SL", "Sri-Lanka");
+		hash.put("US", "United States");
+		hash.put("GB", "United Kingdom");
+		hash.put("PT", "Portugal");
 		
 		System.out.println(hash.get("US"));
 		System.out.println(hash.get("PK"));
