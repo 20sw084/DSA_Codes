@@ -110,7 +110,7 @@ public class AVLTree {
  		}
  		else if (getRight().height<getLeft().height) {
  			if(getLeft().getRight().height>getLeft().getLeft().height) {
- 				getLeft().rotateRight();
+ 				getLeft().rotateLeft();
  			}
  			this.rotateRight();
  		}
