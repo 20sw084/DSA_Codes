@@ -61,12 +61,15 @@ public class BinaryTree {
 		return str+"";
 	}
     private boolean isLeaf() {
-    	if(getLeft()!=null && getRight()!=null) {
+    	if(getLeft()==null && getRight()==null) {
 			return true;
 		}
 		return false;
 	}
     public int size() {
+    	if(getData()==null) {
+    		return 0;
+    	}
     	if(getLeft()==null && getRight()==null)
     		return 1;
     	if(getLeft()==null)
@@ -77,14 +80,14 @@ public class BinaryTree {
     }
     public int height() {
     	if(getData()==null) {
-    		return -1;
+    		return 0;
     	}
     	int leftHeight=0, rightHeight=0;
     	if(getLeft()!=null) {
     		leftHeight=1 + getLeft().height();
     	}
     	if(getRight()!=null) {
-    		leftHeight=1 + getRight().height();
+    		rightHeight=1 + getRight().height();
     	}
     	return (leftHeight>rightHeight)?leftHeight:rightHeight;
     }
@@ -96,13 +99,13 @@ public class BinaryTree {
 //		boolean present=false;
 //		if(getLeft()!=null) {
 //			present = getLeft().contains(target);
-//			if(present==true) {
+//			if(present) {
 //				return present;
 //			}
 //		}
 //		if(getRight()!=null) {
 //			present = getRight().contains(target);
-//			if(present==true) {
+//			if(present) {
 //				return present;
 //			}
 //		}
