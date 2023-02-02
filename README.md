@@ -1,4 +1,4 @@
-# DSA_SW224_PracticeCodes
+# DSA_Codes
 
 This repo include:
 Class Work Programs,
